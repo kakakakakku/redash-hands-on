@@ -49,3 +49,26 @@ $ docker-compose -f docker-compose.production.yml up
 なお，Redash 環境の構築方法は Docker Compose 以外にもあります．興味のある方は，公式ドキュメントを読んでみましょう．
 
 - [Setting up a Redash instance · Redash Help Center](https://redash.io/help-onpremise/setup/setting-up-redash-instance.html)
+
+## データソース設定
+
+次に Redash から MySQL に接続できるように「データソース」を設定します．
+
+画面右上にあるデータソースアイコンをクリックし，次に「New Data Source」ボタンをクリックします．
+
+以下の通りに設定したら「Save → Test Connection」とクリックし，接続確認をしましょう．Success と画面右下に表示されます．なお，今回はテストデータとして `world` データベースを使います．
+
+| 項目 | 値 |
+| --- | --- |
+| Type | MySQL |
+| Name | MySQL |
+| Host | mysql |
+| Port | 3306 |
+| User | root |
+| Password | - |
+| Database name | world |
+| Path to private key file (SSL) | - |
+| Path to client certificate file (SSL) | - |
+| Path to CA certificate file to verify peer against (SSL) | - |
+
+![](images/data_source.png)
