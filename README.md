@@ -72,3 +72,19 @@ $ docker-compose -f docker-compose.production.yml up
 | Path to CA certificate file to verify peer against (SSL) | - |
 
 ![](images/data_source.png)
+
+## クエリを作ってみよう
+
+ナビバーから「Queries → New Query」とクリックし，以下のクエリを入力しましょう．
+
+```sql
+SELECT * FROM country;
+```
+
+入力したら「Execute」ボタンをクリックしてクエリを実行します．すると「国の一覧」が取得できます．
+
+クエリの実行ができたら，画面左上の「New Query」という部分をクリックし，クエリタイトルを「国の一覧」に変更します．忘れずに画面右側にある「Save」ボタンをクリックしましょう．
+
+さらに「Publish」ボタンをクリックします．Redash ではクエリを公開することで，他のユーザーに共有することができます．
+
+![](images/query_country.png)
