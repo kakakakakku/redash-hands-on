@@ -229,3 +229,41 @@ Redash には Grouping Dashboards という機能があり，ダッシュボー�
 最後に画面右側にあるメニューから「Publish Dashboard」をクリックしましょう．クエリ同様にダッシュボードも他のユーザーに共有することができます．
 
 ![](images/dashboard_country.png)
+
+## パラメータ付きクエリを作ってみよう
+
+次はクエリにパラメータを付けてみましょう．
+
+Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．
+
+```sql
+SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DESC;
+```
+
+すると，画面左下に「CountryCode」をパラメータとして入力するテキストエリアが表示されます．
+
+ここに「JPN」を入力し，クエリを実行すると，日本の都市を人口の多い順に取得することができます．クエリタイトルを「都市の検索」にして保存しておきましょう．
+
+![](images/query_city_search.png)
+
+パラメータとして入力できる UI はテキストフィールド以外にもあります．名前の通り，例えば「Date」を選択すると，日付ピッカー（カレンダー）から日付を選択することができます．
+
+- Text
+- Number
+- Dropdown List
+- Date
+- Date and Time
+- Date and Time (with seconds)
+
+今回は便利な「Dropdown List」を試しましょう．
+
+パラメータの横にあるトグルをクリックし，「Type」を `Dropdown List` にします．さらに `Dropdown List Values (newline delimited)` に以下のリストを設定します．
+
+```
+JPN
+USA
+```
+
+すると，選択肢から選べるようになるため，入力ミスを軽減できるようになります．
+
+![](images/query_city_search_dropdown.png)
