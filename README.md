@@ -126,3 +126,57 @@ SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
 クエリタイトルを「国の件数」とし，忘れずに保存しておきましょう．
 
 ![](images/query_country_with_kpi.png)
+
+## パイチャートと棒グラフを作ってみよう
+
+クエリの作成はもう慣れたと思います．以下のクエリを入力し，実行しましょう．
+
+国ごとに都市の件数を取得できます．中国とインドが特に多いことがわかります．
+
+```sql
+SELECT CountryCode, COUNT(*) AS COUNT
+FROM city
+GROUP BY CountryCode
+ORDER BY COUNT DESC;
+```
+
+先ほどと同様に「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をすると，パイチャートを作ることができます．
+
+- Visualization Type
+    - `Chart`
+- Visualization Name
+    - `都市の件数`
+- Chart Type
+    - `Pie`
+- X Column
+    - `CountryCode`
+- Y Columns
+    - `COUNT`
+
+![](images/query_city_pie.png)
+
+次に棒グラフも作ってみましょう．設定は以下の通りです．
+
+- Visualization Type
+    - `Chart`
+- Visualization Name
+    - `都市の件数（棒グラフ）`
+- Chart Type
+    - `Bar`
+- X Column
+    - `CountryCode`
+- Y Columns
+    - `COUNT`
+
+しかし，棒グラフの場合，このままではグラフが表示されません．隣にある「X AXIS」タブをクリックし，以下の設定もする必要があります．
+
+- Scale
+    - `Category`
+- Sort Values
+    - `OFF`
+
+これで棒グラフも作れました．
+
+クエリタイトルを「都市の件数」とし，忘れずに保存しておきましょう．
+
+![](images/query_city_bar.png)
