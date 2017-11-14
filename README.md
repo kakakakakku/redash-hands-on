@@ -88,3 +88,41 @@ SELECT * FROM country;
 さらに「Publish」ボタンをクリックします．Redash ではクエリを公開することで，他のユーザーに共有することができます．
 
 ![](images/query_country.png)
+
+## グラフを作ってみよう
+
+先ほどと同様に新規クエリを作成し，以下のクエリを入力しましょう．実行すると，登録されている国の件数が「239」であることが取得できます．この件数をグラフにしてみましょう．
+
+```sql
+SELECT COUNT(*) AS COUNT FROM country;
+```
+
+TABLE タブの横に表示されている「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されたはずです．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
+
+- Visualization Type
+    - `Counter`
+- Visualization Name
+    - `国の件数`
+- Counter Value Column Name
+    - `COUNT`
+
+なお `Counter` には「目標値」を設定する機能もあります．今回のデータソースではデータ件数に変化がありませんが，サンプルとして，作ってみましょう．先ほどのクエリを以下の通りに変更します．
+
+```sql
+SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
+```
+
+もう1度「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．先ほどとの違いは「Target Value Column Name」の設定を追加した点です．このようにクエリを活用することで，目標値と実績値を一緒に可視化することができます．
+
+- Visualization Type
+    - `Counter`
+- Visualization Name
+    - `国の件数（+ 目標値）`
+- Counter Value Column Name
+    - `COUNT`
+- Target Value Column Name
+    - `kpi`
+
+クエリタイトルを「国の件数」とし，忘れずに保存しておきましょう．
+
+![](images/query_country_with_kpi.png)
