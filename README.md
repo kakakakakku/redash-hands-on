@@ -267,3 +267,27 @@ USA
 すると，選択肢から選べるようになるため，入力ミスを軽減できるようになります．
 
 ![](images/query_city_search_dropdown.png)
+
+## フィルタ機能を使ってみよう
+
+Redash では，クエリのカラム名を `カラム名::filter` もしくは `カラム名::multi-filter` という命名規則にすると，クエリ結果をフィルタできるようになります．さっそく試してみましょう．
+
+以下の新規クエリを作成し，実行すると，クエリ結果を「CountryCode」で自由にフィルタできるようになったはずです．これが「フィルタ機能」です．
+
+```sql
+SELECT *, CountryCode AS 'CountryCode::filter' FROM city ORDER BY Population DESC;
+```
+
+次に「マルチフィルタ機能」を試しましょう．クエリを以下のように変更すると，今度は複数の「CountryCode」でフィルタできるようになったはずです．
+
+```sql
+SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Population DESC;
+```
+
+フィルタ機能は非常に便利です．詳しくは公式ドキュメントを読んでみましょう．
+
+- [Exploring Schemas · Redash Help Center](https://redash.io/help/queries/writing_queries.html)
+
+クエリタイトルを「都市の検索」にして保存しておきましょう．
+
+![](images/query_city_filter.png)
