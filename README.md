@@ -291,3 +291,37 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 クエリタイトルを「都市の検索」にして保存しておきましょう．
 
 ![](images/query_city_filter.png)
+
+## クエリスニペットを活用しよう
+
+Redash では，よく使うクエリ（もしくはクエリの一部）をクエリスニペットとして登録する機能があります．
+
+画面右上にあるデータソースアイコンをクリックし，「QUERY SNIPPETS」タブをクリックします．
+
+次に「New Snippet」ボタンをクリックすると登録画面が表示されます．以下の設定をしたら「Save」ボタンを押しましょう．
+
+- Trigger
+    - `_country_code`
+- Description
+    - `国コード検索`
+- Snippet
+    - `WHERE CountryCode = '{{CountryCode}}'`
+
+新規クエリを作成し，以下のクエリを入力しましょう．クエリスニペットに登録した「Trigger」に部分一致すると候補として表示されるため `_` と入力するとクエリスニペットを呼び出すことができます．
+
+```sql
+SELECT * FROM city _
+```
+
+クエリスニペットにプレースホルダを設定することもできます．
+
+以下のように `${1:table}` と設定すると，テーブル名のプレースホルダになります．是非試してみましょう．
+
+- Trigger
+    - `_record_count`
+- Description
+    - `レコード件数`
+- Snippet
+    - `SELECT COUNT(*) FROM ${1:table};`
+
+![](images/query_snippets.png)
