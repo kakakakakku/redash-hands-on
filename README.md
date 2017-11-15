@@ -344,3 +344,23 @@ ORDER BY Population DESC;
 「Population」の値によって「緑黄赤」と色を変えています．さらに縦サイズも変えています．このように活用すると，よりクエリ結果を便利に使うことができます．
 
 ![](images/query_country_with_color.png)
+
+## リンク集を作ろう
+
+ダッシュボードに複数のグラフを配置する場合，関連する URL などを載せておくと便利な場合があります．
+
+ダッシュボードにフリーテキストを入力する方法もありますが，Redash ではクエリ結果が URL 形式の場合に自動的にリンクになるため，この機能を使うと便利です．
+
+以下の新規クエリを作成してみましょう．
+
+```sql
+SELECT 'Google' AS name, 'https://www.google.co.jp/' AS url
+UNION
+SELECT 'Yahoo!', 'https://www.yahoo.co.jp/'
+UNION
+SELECT 'Bing', 'https://www.bing.com/';
+```
+
+自動的に URL がリンクになっていると思います．
+
+![](images/query_urls.png)
