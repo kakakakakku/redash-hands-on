@@ -325,3 +325,22 @@ SELECT * FROM city _
     - `SELECT COUNT(*) FROM ${1:table};`
 
 ![](images/query_snippets.png)
+
+## クエリ結果に色を付けよう
+
+Redash では，クエリ結果に HTML を埋め込むことができます．さっそく以下の新規クエリを作成してみましょう．
+
+```sql
+SELECT *,
+       CASE
+           WHEN Population > 1000000000 THEN '<div class="bg-success p-30 text-center">AAA</div>'
+           WHEN Population > 100000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
+           ELSE '<div class="bg-danger p-10 text-center">CCC</div>'
+       END AS Color
+FROM country
+ORDER BY Population DESC;
+```
+
+「Population」の値によって「緑黄赤」と色を変えています．さらに縦サイズも変えています．このように活用すると，よりクエリ結果を便利に使うことができます．
+
+![](images/query_country_with_color.png)
