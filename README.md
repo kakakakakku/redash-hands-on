@@ -364,3 +364,16 @@ SELECT 'Bing', 'https://www.bing.com/';
 自動的に URL がリンクになっていると思います．
 
 ![](images/query_urls.png)
+
+## クエリ結果をダウンロードしよう
+
+Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と Excel です．
+
+ナビバーから「Queries → Queries」とクリックし，既に作ったクエリ「国の一覧」を開きましょう．
+
+画面右側にある「Download Dataset」ボタンを押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
+
+- Download as CSV File
+- Download as Excel File
+
+![](images/query_download.png)
