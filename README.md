@@ -1,32 +1,29 @@
 # redash-hands-on
 
+## 前提
+
+Redash ハンズオン資料は以下の環境を前提に動作確認をしています．
+
+- Docker For Mac
+
 ## 環境構築
 
-Docker Compose で Redash (v2.0.1) 環境を構築します．任意のディレクトリに Redash リポジトリをクローンし，リリースタグから v2.0.1 に切り替えましょう．
+Docker Compose で Redash (v2.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
 
 ```sh
-$ git clone git@github.com:getredash/redash.git
-$ cd redash
-$ git checkout tags/v2.0.1 -b v2.0.1
+$ git clone git@github.com:kakakakakku/redash-hands-on.git
+$ cd redash-hands-on
 ```
 
-次に Redash からテストデータを事前に投入した MySQL 5.7 に接続できるように `docker-compose.production.yml` を変更します．以下のように変更をしましょう．
+公式の getredash/redash リポジトリに公開されている設定をベースに，テストデータを事前に投入した MySQL 5.7 コンテナを含めた `docker-compose.yml` を準備しました．
 
-```diff
-       - server
-     links:
-       - server:redash
-+  mysql:
-+    image: kakakakakku/mysql-57-world-database
-+    environment:
-+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-```
+以下のコマンドを実行し，Docker Compose で Redash を起動しましょう．
 
-変更をしたら Docker Compose で Redash を起動します．初回はイメージをダウンロードするため，少し時間がかかる場合があります．
+初回はイメージをダウンロードするため，少し時間がかかる場合があります．
 
 ```
-$ docker-compose -f docker-compose.production.yml run --rm server create_db
-$ docker-compose -f docker-compose.production.yml up
+$ docker-compose -f docker-compose.yml run --rm server create_db
+$ docker-compose -f docker-compose.yml up
 ```
 
 起動すると，以下の URL で Redash にアクセスできるようになります．
