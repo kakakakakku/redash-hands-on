@@ -22,7 +22,7 @@ services:
       REDASH_COOKIE_SECRET: veryverysecret
       REDASH_WEB_WORKERS: 4
   worker:
-    image: redash/redash:latest
+    image: redash/redash:2.0.1.b3080
     command: scheduler
     environment:
       PYTHONUNBUFFERED: 0
