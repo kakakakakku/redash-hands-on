@@ -392,3 +392,57 @@ SELECT Code, Name, Population FROM country;
 ```
 
 ![](images/query_fork.png)
+
+## アラートを設定しよう
+
+Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを飛ばす機能があります．
+
+Slack に Webhook 経由でアラートを飛ばしてみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
+
+まず，Slack で Incoming WebHooks を作成します．そのままでも使えますが，「Customize Name」に `Redash Alerts`，「Customize Icon」に Redash のロゴ画像などを設定しておくと便利です．「Webhook URL」の値は次に使います．
+
+次に画面右上にあるデータソースアイコンをクリックし，「ALERT DESTINATIONS」タブにある「New Alert Destination」ボタンをクリックしましょう．登録画面で以下を設定します．
+
+- Type
+    - `Slack`
+- Name
+    - `Slack`
+- Slack Webhook URL
+    - `Webhook URL`
+
+![](images/alert_destinations.png)
+
+アラートを設定する前に，もう少し準備をしておく必要があります．
+
+既に作成をした「国の件数」クエリを開き，「Refresh Schedule」を有効にする必要があります．今回は `Every minute` にしましょう．
+
+今回の例では，国の件数に変化はありませんが，定期的にクエリの実行をする機能です．アラートの設定をするクエリには「Refresh Schedule」の設定が必要です．
+
+![](images/refresh_schedule.png)
+
+最後はアラートの設定です．ナビバーから「Alerts」をクリックし，「New Alert」の画面を開きます．以下のエラーが出る場合がありますが，問題ありません．
+
+>It looks like your mail server isn't configured. Make sure to configure it for the alert emails to work.
+
+登録画面で以下を設定します．「Rearm seconds」は，異常値が続く場合にアラートを飛ばす間隔（秒数）です．
+
+- Query
+    - `国の件数`
+- Name
+    - `国の件数が200件を超えた場合`
+- Value column
+    - `COUNT`
+- Op
+    - `greater than`
+- Reference
+    - `200`
+- Rearm seconds
+    - `60`
+
+「Save」をクリックすると，右側に「Notifications」のメニューが表示されるため，「Slack」を「Add」し，もう一度「Save」をクリックします．
+
+![](images/alerts.png)
+
+すると，Slack にアラートが飛ぶはずです．確認ができたら「Rearm seconds」をブランクにして「Save」をクリックしておきましょう．
+
+![](images/slack_alerts.png)

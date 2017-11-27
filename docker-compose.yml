@@ -31,6 +31,7 @@ services:
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
       QUEUES: "queries,scheduled_queries,celery"
       WORKERS_COUNT: 2
+      REDASH_HOST: "http://localhost"
   redis:
     image: redis:3.0-alpine
   postgres:
