@@ -340,6 +340,8 @@ ORDER BY Population DESC;
 
 「Population」の値によって「緑黄赤」と色を変えています．さらに縦サイズも変えています．このように活用すると，よりクエリ結果を便利に使うことができます．
 
+クエリタイトルを「国の一覧（色付き）」にして保存しておきましょう．
+
 ![](images/query_country_with_color.png)
 
 ## リンク集を作ろう
@@ -358,7 +360,7 @@ UNION
 SELECT 'Bing', 'https://www.bing.com/';
 ```
 
-自動的に URL がリンクになっていると思います．
+自動的に URL がリンクになっていると思います．クエリタイトルを「リンク集」にして保存しておきましょう．
 
 ![](images/query_urls.png)
 
