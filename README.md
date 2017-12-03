@@ -5,6 +5,7 @@
 Redash ハンズオン資料は以下の環境を前提に動作確認をしています．
 
 - Docker For Mac
+- Docker For Windows
 
 ## 環境構築
 
