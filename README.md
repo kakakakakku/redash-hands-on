@@ -38,6 +38,8 @@ $ docker-compose -f docker-compose.yml up
         - `admin`
     - Email Address
         - `admin@example.com`
+    - Password
+        - `任意のパスワード`
 - General
     - Organization Name
         - `hands-on`
@@ -95,7 +97,7 @@ SELECT * FROM country;
 SELECT COUNT(*) AS COUNT FROM country;
 ```
 
-TABLE タブの横に表示されている「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されたはずです．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
+「TABLE」 タブの横に表示されている「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されます．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
 
 - Visualization Type
     - `Counter`
@@ -112,6 +114,8 @@ SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
 
 もう1度「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．先ほどとの違いは「Target Value Column Name」の設定を追加した点です．このようにクエリを活用することで，目標値と実績値を一緒に可視化することができます．
 
+`Counter` に「目標値」を設定した場合，値が実績を下回る場合は赤く表示され，上回る場合は緑で表示されます．
+
 - Visualization Type
     - `Counter`
 - Visualization Name
@@ -121,13 +125,13 @@ SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
 - Target Value Column Name
     - `kpi`
 
-クエリタイトルを「国の件数」とし，忘れずに保存しておきましょう．
+クエリタイトルを「国の件数」とし，忘れずに保存と公開をしておきましょう．
 
 ![](images/query_country_with_kpi.png)
 
-## パイチャートと棒グラフを作ってみよう
+## 円グラフと棒グラフを作ってみよう
 
-クエリの作成はもう慣れたと思います．以下のクエリを入力し，実行しましょう．
+クエリの作成はもう慣れたと思います．以下のクエリを作成し，実行しましょう．
 
 国ごとに都市の件数を取得できます．中国とインドが特に多いことがわかります．
 
@@ -138,7 +142,7 @@ GROUP BY CountryCode
 ORDER BY COUNT DESC;
 ```
 
-先ほどと同様に「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をすると，パイチャートを作ることができます．
+先ほどと同様に「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をすると，円グラフを作ることができます．
 
 - Visualization Type
     - `Chart`
@@ -166,7 +170,7 @@ ORDER BY COUNT DESC;
 - Y Columns
     - `COUNT`
 
-しかし，棒グラフの場合，このままではグラフが表示されません．隣にある「X AXIS」タブをクリックし，以下の設定もする必要があります．
+しかし，棒グラフの場合，このままではグラフが表示されません．「GENERAL」タブの隣にある「X AXIS」タブをクリックし，軸の設定をする必要があります．
 
 - Scale
     - `Category`
@@ -175,7 +179,7 @@ ORDER BY COUNT DESC;
 
 これで棒グラフも作れました．
 
-クエリタイトルを「都市の件数」とし，忘れずに保存しておきましょう．
+クエリタイトルを「都市の件数」とし，忘れずに保存と公開をしておきましょう．
 
 ![](images/query_city_bar.png)
 
@@ -224,6 +228,10 @@ Redash には Grouping Dashboards という機能があり，ダッシュボー�
     - Widget Size
         - `Double`
 
+「Visualization」にクエリが表示されない場合は，そのクエリが公開されていないことが考えられます．
+
+ナビバーの「Queries → Queries」で `Unpublished` 状態になっているクエリがあったら，そのクエリを公開し，再度ダッシュボードにグラフを追加してみましょう．
+
 最後に画面右側にあるメニューから「Publish Dashboard」をクリックしましょう．クエリ同様にダッシュボードも他のユーザーに共有することができます．
 
 ![](images/dashboard_country.png)
@@ -270,13 +278,13 @@ USA
 
 Redash では，クエリのカラム名を `カラム名::filter` もしくは `カラム名::multi-filter` という命名規則にすると，クエリ結果をフィルタできるようになります．さっそく試してみましょう．
 
-以下の新規クエリを作成し，実行すると，クエリ結果を「CountryCode」で自由にフィルタできるようになったはずです．これが「フィルタ機能」です．
+以下の新規クエリを作成し，実行すると，クエリ結果を「CountryCode」で自由にフィルタできるようになります．これが「フィルタ機能」です．
 
 ```sql
 SELECT *, CountryCode AS 'CountryCode::filter' FROM city ORDER BY Population DESC;
 ```
 
-次に「マルチフィルタ機能」を試しましょう．クエリを以下のように変更すると，今度は複数の「CountryCode」でフィルタできるようになったはずです．
+次に「マルチフィルタ機能」を試しましょう．クエリを以下のように変更すると，今度は複数の「CountryCode」でフィルタできるようになります．
 
 ```sql
 SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Population DESC;
@@ -286,7 +294,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 - [Exploring Schemas · Redash Help Center](https://redash.io/help/queries/writing_queries.html)
 
-クエリタイトルを「都市の検索」にして保存しておきましょう．
+クエリタイトルを「都市のフィルタ」にして保存しておきましょう．
 
 ![](images/query_city_filter.png)
 
@@ -384,7 +392,7 @@ Redash では，クエリ結果をダウンロードすることができます�
 
 チームで使っていると「メンバーが作ったクエリを少しカスタマイズしたい」と感じる場面があります．そのために Redash には「フォーク機能」があります．
 
-既に作ったクエリ「国の一覧」を開き，画面右上にある「Show Source」ボタンをクリックしましょう．見慣れたクエリ作成画面に遷移したはずです．
+既に作ったクエリ「国の一覧」を開き，画面右上にある「Show Source」ボタンをクリックしましょう．見慣れたクエリ作成画面に遷移します．
 
 次に「Save」ボタンの隣りにある「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを「Copy of (#1) 国の一覧」から「国の一覧（カスタマイズ）」と変更しましょう．
 
@@ -446,6 +454,6 @@ Slack に Webhook 経由でアラートを飛ばしてみましょう．今回�
 
 ![](images/alerts.png)
 
-すると，Slack にアラートが飛ぶはずです．確認ができたら「Rearm seconds」をブランクにして「Save」をクリックしておきましょう．
+すると，Slack にアラートが通知されます．確認ができたら「Rearm seconds」をブランクにして「Save」をクリックしておきましょう．
 
 ![](images/slack_alerts.png)
