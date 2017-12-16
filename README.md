@@ -12,7 +12,7 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 Docker Compose で Redash (v2.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
 
 ```sh
-$ git clone git@github.com:kakakakakku/redash-hands-on.git
+$ git clone https://github.com/kakakakakku/redash-hands-on.git
 $ cd redash-hands-on
 ```
 
