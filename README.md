@@ -406,9 +406,9 @@ SELECT Code, Name, Population FROM country;
 
 ## アラートを設定しよう
 
-Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを飛ばす機能があります．
+Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを通知する機能があります．
 
-Slack に Webhook 経由でアラートを飛ばしてみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
+Slack に Webhook 経由でアラートを通知してみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
 
 まず，Slack で Incoming WebHooks を作成します．そのままでも使えますが，「Customize Name」に `Redash Alerts`，「Customize Icon」に Redash のロゴ画像などを設定しておくと便利です．「Webhook URL」の値は次に使います．
 
@@ -435,7 +435,7 @@ Slack に Webhook 経由でアラートを飛ばしてみましょう．今回�
 
 >It looks like your mail server isn't configured. Make sure to configure it for the alert emails to work.
 
-登録画面で以下を設定します．「Rearm seconds」は，異常値が続く場合にアラートを飛ばす間隔（秒数）です．
+登録画面で以下を設定します．「Rearm seconds」は，異常値が続く場合にアラートを再通知する間隔（秒数）です．
 
 - Query
     - `国の件数`
