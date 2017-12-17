@@ -321,7 +321,7 @@ SELECT * FROM city _
 
 クエリスニペットにプレースホルダを設定することもできます．
 
-以下のように `${1:table}` と設定すると，テーブル名のプレースホルダになります．是非試してみましょう．
+以下のように `${1:table}` と設定すると，テーブル名のプレースホルダになります．是非試してみましょう．今回はクエリスニペットの動作確認が目的ですので，クエリは保存しなくて大丈夫です．
 
 - Trigger
     - `_record_count`
@@ -349,7 +349,9 @@ ORDER BY Population DESC;
 
 「Population」の値によって「緑黄赤」と色を変えています．さらに縦サイズも変えています．このように活用すると，よりクエリ結果を便利に使うことができます．
 
-クエリタイトルを「国の一覧（色付き）」にして保存しておきましょう．
+クエリタイトルを「国の一覧（色付き）」にして保存しておきましょう．他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
+
+- [Conditional Formatting & General Text Formatting - Redash Knowledge Base](http://help.redash.io/article/136-condition)
 
 ![](images/query_country_with_color.png)
 
