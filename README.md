@@ -23,8 +23,8 @@ $ cd redash-hands-on
 初回はイメージをダウンロードするため，少し時間がかかる場合があります．
 
 ```
-$ docker-compose -f docker-compose.yml run --rm server create_db
-$ docker-compose -f docker-compose.yml up
+$ docker-compose run --rm server create_db
+$ docker-compose up
 ```
 
 起動すると，以下の URL で Redash にアクセスできるようになります．
