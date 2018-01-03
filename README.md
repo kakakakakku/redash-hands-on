@@ -54,7 +54,9 @@ $ docker-compose up
 
 次に Redash から MySQL に接続できるように「データソース」を設定します．
 
-画面右上にあるデータソースアイコンをクリックし，次に「New Data Source」ボタンをクリックします．
+下図のように, 画面右上にあるデータソースアイコンをクリックし，次に「New Data Source」ボタンをクリックします．
+
+![](images/data_source2.png)
 
 以下の通りに設定したら「Save → Test Connection」とクリックし，接続確認をしましょう．Success と画面右下に表示されます．なお，今回はテストデータとして `world` データベースを使います．
 
