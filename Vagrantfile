@@ -26,7 +26,6 @@ Vagrant.configure("2") do |config|
     apt-get install -y docker-ce
     curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
-    gpasswd -a ubuntu docker
     systemctl start docker
   SHELL
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
@@ -36,8 +35,8 @@ After provisioning, You should login with "vagrant ssh".
 Then, run below commands.
 
 $ cd ~/redash-hands-on
-$ docker-compose -f docker-compose.yml run --rm server create_db
-$ docker-compose -f docker-compose.yml up
+$ sudo docker-compose -f docker-compose.yml run --rm server create_db
+$ sudo docker-compose -f docker-compose.yml up
 
 Finally, You can see Redash with below URL.
 
