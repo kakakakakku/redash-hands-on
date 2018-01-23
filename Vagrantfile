@@ -35,8 +35,8 @@ After provisioning, You should login with "vagrant ssh".
 Then, run below commands.
 
 $ cd ~/redash-hands-on
-$ sudo docker-compose -f docker-compose.yml run --rm server create_db
-$ sudo docker-compose -f docker-compose.yml up
+$ sudo docker-compose run --rm server create_db
+$ sudo docker-compose up
 
 Finally, You can see Redash with below URL.
 
