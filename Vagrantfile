@@ -10,26 +10,7 @@ Vagrant.configure("2") do |config|
   end
   config.vm.provision "shell", inline: <<-SHELL
     sed -i s/archive.ubuntu.com/ftp.jaist.ac.jp/ /etc/apt/sources.list
-    apt-get update
-    apt-get upgrade -y
-    apt-get install -y language-pack-ja \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-    add-apt-repository \
-      "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-      $(lsb_release -cs) \
-      stable"
-    apt-get update
-    apt-get install -y docker-ce
-    curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
-    systemctl start docker
-  SHELL
-  config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    git clone https://github.com/kakakakakku/redash-hands-on.git
+    bash /vagrant/ubuntu_setup.sh
     cat <<EOM
 After provisioning, You should login with "vagrant ssh".
 Then, run below commands.
