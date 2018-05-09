@@ -366,19 +366,17 @@ ORDER BY Population DESC;
 
 ダッシュボードに複数のグラフを配置する場合，関連する URL などを載せておくと便利な場合があります．
 
-ダッシュボードにフリーテキストを入力する方法もありますが，Redash ではクエリ結果が URL 形式の場合に自動的にリンクになるため，この機能を使うと便利です．
+ダッシュボードにフリーテキストを入力する方法もありますが，Redash では，クエリ結果に HTML を埋め込むことができるため，簡単にリンクを作成することができます．
 
-以下の新規クエリを作成してみましょう．
+以下の新規クエリを作成し，クエリタイトルを「リンク集」にして保存しておきましょう．
 
 ```sql
-SELECT 'Google' AS name, 'https://www.google.co.jp/' AS url
+SELECT '<a href="https://www.google.co.jp/">Google</a>' AS name
 UNION
-SELECT 'Yahoo!', 'https://www.yahoo.co.jp/'
+SELECT '<a href="https://www.yahoo.co.jp/">Yahoo!</a>'
 UNION
-SELECT 'Bing', 'https://www.bing.com/';
+SELECT '<a href="https://www.bing.com/">Bing</a>';
 ```
-
-自動的に URL がリンクになっていると思います．クエリタイトルを「リンク集」にして保存しておきましょう．
 
 ![](images/query_urls.png)
 
