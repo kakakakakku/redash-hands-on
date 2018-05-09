@@ -263,6 +263,7 @@ SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DES
 - Text
 - Number
 - Dropdown List
+- Query Based Dropdown List
 - Date
 - Date and Time
 - Date and Time (with seconds)
