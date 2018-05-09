@@ -9,7 +9,7 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 
 ## 環境構築
 
-Docker Compose で Redash (v2.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
+Docker Compose で Redash (v4.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
@@ -48,7 +48,7 @@ $ docker-compose up
 
 なお，Redash 環境の構築方法は Docker Compose 以外にもあります．興味のある方は，公式ドキュメントを読んでみましょう．
 
-- [Setting up a Redash instance · Redash Help Center](https://redash.io/help-onpremise/setup/setting-up-redash-instance.html)
+- [Setting up a Redash Instance | Redash](https://redash.io/help/open-source/setup)
 
 ## データソース設定
 
