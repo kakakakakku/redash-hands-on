@@ -7,7 +7,7 @@
 version: '2'
 services:
   server:
-    image: redash/redash:2.0.1.b3080
+    image: redash/redash:4.0.1.b4038
     command: server
     depends_on:
       - postgres
@@ -22,7 +22,7 @@ services:
       REDASH_COOKIE_SECRET: veryverysecret
       REDASH_WEB_WORKERS: 4
   worker:
-    image: redash/redash:2.0.1.b3080
+    image: redash/redash:4.0.1.b4038
     command: scheduler
     environment:
       PYTHONUNBUFFERED: 0
