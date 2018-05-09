@@ -201,52 +201,44 @@ ORDER BY COUNT DESC;
 
 次にダッシュボードを作ってみましょう．
 
-ナビバーから「Dashboards → New Dashboard」とクリックし，ダッシュボードタイトルに「ハンズオン:国ダッシュボード」と入力しましょう．
+ナビバーから「Create → Dashboard」とクリックし，ダッシュボードタイトルに「ハンズオン:国ダッシュボード」と入力しましょう．
 
 ポイントは `グループ名:ダッシュボード名` という命名規則にすることです．
 
 Redash には Grouping Dashboards という機能があり，ダッシュボードタイトルにコロンを含めることで，同じグループのダッシュボードをまとめて管理することができます．詳しくは公式ドキュメントを読んでみましょう．
 
-- [How to Create a Dashboard? · Redash Help Center](https://redash.io/help/dashboards/dashboards.html)
+- [Creating and Editing Dashboards | Redash](https://redash.io/help/user-guide/dashboards/dashboard-editing)
 
 次にダッシュボードにグラフを配置していきます．
 
-画面右側にあるメニューから「Add Widget」をクリックします．すると「Add Widget」というモーダルが表示されるため，以下の設定を繰り返し行いましょう．
+画面右側にあるメニューから「Add Widget」をクリックします．すると「Add Widget」というモーダルが表示されるため，以下の設定を繰り返し行いましょう．レイアウトは自由に変更することができます．
 
 - 1回目
     - Visualization
         - `国の一覧`
     - Choose Visualization
         - `Table`
-    - Widget Size
-        - `Double`
 - 2回目
     - Visualization
         - `国の件数`
     - Choose Visualization
         - `国の件数（+ 目標値）`
-    - Widget Size
-        - `Regular`
 - 3回目
     - Visualization
         - `都市の件数`
     - Choose Visualization
         - `都市の件数`
-    - Widget Size
-        - `Regular`
 - 4回目
     - Visualization
         - `都市の件数`
     - Choose Visualization
         - `都市の件数（棒グラフ）`
-    - Widget Size
-        - `Double`
 
 「Visualization」にクエリが表示されない場合は，そのクエリが公開されていないことが考えられます．
 
-ナビバーの「Queries → Queries」で `Unpublished` 状態になっているクエリがあったら，そのクエリを公開し，再度ダッシュボードにグラフを追加してみましょう．
+ナビバーの「Queries」で `Unpublished` 状態になっているクエリがあったら，そのクエリを公開し，再度ダッシュボードにグラフを追加してみましょう．
 
-最後に画面右側にあるメニューから「Publish Dashboard」をクリックしましょう．クエリ同様にダッシュボードも他のユーザーに共有することができます．
+最後に画面右側にある「Apply Changes」をクリックし，続けて「Publish」をクリックしましょう．クエリ同様にダッシュボードも他のユーザーに共有することができます．
 
 ![](images/dashboard_country.png)
 
