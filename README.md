@@ -109,7 +109,7 @@ SELECT * FROM country;
 SELECT COUNT(*) AS COUNT FROM country;
 ```
 
-「TABLE」 タブの横に表示されている「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されます．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
+「TABLE」 タブの横に表示されている「+ New Visualization」タブをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されます．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
 
 - Visualization Type
     - `Counter`
@@ -124,7 +124,7 @@ SELECT COUNT(*) AS COUNT FROM country;
 SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
 ```
 
-もう1度「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．先ほどとの違いは「Target Value Column Name」の設定を追加した点です．このようにクエリを活用することで，目標値と実績値を一緒に可視化することができます．
+もう1度「+ New Visualization」タブをクリックし，以下の通りに設定をします．先ほどとの違いは「Target Value Column Name」の設定を追加した点です．このようにクエリを活用することで，目標値と実績値を一緒に可視化することができます．
 
 `Counter` に「目標値」を設定した場合，値が実績を下回る場合は赤く表示され，上回る場合は緑で表示されます．
 
