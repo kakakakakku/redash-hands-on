@@ -309,7 +309,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 Redash では，よく使うクエリ（もしくはクエリの一部）をクエリスニペットとして登録する機能があります．
 
-画面右上にあるデータソースアイコンをクリックし，「QUERY SNIPPETS」タブをクリックします．
+画面右上にある Settings アイコンをクリックし，「Query Snippets」タブをクリックします．
 
 次に「New Snippet」ボタンをクリックすると登録画面が表示されます．以下の設定をしたら「Save」ボタンを押しましょう．
 
