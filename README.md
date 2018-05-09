@@ -73,6 +73,18 @@ $ docker-compose up
 
 ![](images/data_source.png)
 
+## 日付フォーマット設定
+
+画面右上にある Settings アイコンをクリックし，「Settings」タブをクリックします．
+
+日付フォーマットを以下の通りに変更します．
+
+- General
+    - Date Format
+        - YYYY-MM-DD
+
+![](images/settings.png)
+
 ## クエリを作ってみよう
 
 ナビバーから「Queries → New Query」とクリックし，以下のクエリを入力しましょう．
