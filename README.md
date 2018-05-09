@@ -87,7 +87,7 @@ $ docker-compose up
 
 ## クエリを作ってみよう
 
-ナビバーから「Queries → New Query」とクリックし，以下のクエリを入力しましょう．
+ナビバーから「Create → Query」とクリックし，以下のクエリを入力しましょう．
 
 ```sql
 SELECT * FROM country;
