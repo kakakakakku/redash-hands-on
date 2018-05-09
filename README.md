@@ -347,7 +347,7 @@ Redash では，クエリ結果に HTML を埋め込むことができます．�
 SELECT *,
        CASE
            WHEN Population > 1000000000 THEN '<div class="bg-success p-30 text-center">AAA</div>'
-           WHEN Population > 100000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
+           WHEN Population > 140000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
            ELSE '<div class="bg-danger p-10 text-center">CCC</div>'
        END AS Color
 FROM country
@@ -358,7 +358,7 @@ ORDER BY Population DESC;
 
 クエリタイトルを「国の一覧（色付き）」にして保存しておきましょう．他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
 
-- [Conditional Formatting & General Text Formatting - Redash Knowledge Base](http://help.redash.io/article/136-condition)
+- [Conditional Formatting & General Text Formatting - Tips, Tricks & Query Examples - Redash Discourse](https://discuss.redash.io/t/conditional-formatting-general-text-formatting/1706)
 
 ![](images/query_country_with_color.png)
 
