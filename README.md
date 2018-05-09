@@ -299,7 +299,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 フィルタ機能は非常に便利です．詳しくは公式ドキュメントを読んでみましょう．
 
-- [Exploring Schemas · Redash Help Center](https://redash.io/help/queries/writing_queries.html)
+- [Query Filters | Redash](https://redash.io/help/user-guide/querying/query-filters)
 
 クエリタイトルを「都市のフィルタ」にして保存しておきましょう．
 
