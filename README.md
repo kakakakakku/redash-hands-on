@@ -384,9 +384,9 @@ SELECT '<a href="https://www.bing.com/">Bing</a>';
 
 Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と Excel です．
 
-ナビバーから「Queries → Queries」とクリックし，既に作ったクエリ「国の一覧」を開きましょう．
+ナビバーの「Queries」をクリックし，既に作ったクエリ「国の一覧」を開きましょう．
 
-画面右側にある「Download Dataset」ボタンを押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
+画面下にある「Download Dataset」ボタンを押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
 
 - Download as CSV File
 - Download as Excel File
