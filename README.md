@@ -154,18 +154,19 @@ GROUP BY CountryCode
 ORDER BY COUNT DESC;
 ```
 
-先ほどと同様に「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をすると，円グラフを作ることができます．
+先ほどと同様に「+ New Visualization」タブをクリックし，以下の通りに設定をすると，円グラフを作ることができます．
 
 - Visualization Type
     - `Chart`
 - Visualization Name
     - `都市の件数`
-- Chart Type
-    - `Pie`
-- X Column
-    - `CountryCode`
-- Y Columns
-    - `COUNT`
+- General
+    - Chart Type
+        - `Pie`
+    - X Column
+        - `CountryCode`
+    - Y Columns
+        - `COUNT`
 
 ![](images/query_city_pie.png)
 
@@ -175,12 +176,13 @@ ORDER BY COUNT DESC;
     - `Chart`
 - Visualization Name
     - `都市の件数（棒グラフ）`
-- Chart Type
-    - `Bar`
-- X Column
-    - `CountryCode`
-- Y Columns
-    - `COUNT`
+- General
+    - Chart Type
+        - `Bar`
+    - X Column
+        - `CountryCode`
+    - Y Columns
+        - `COUNT`
 
 しかし，棒グラフの場合，このままではグラフが表示されません．「GENERAL」タブの隣にある「X AXIS」タブをクリックし，軸の設定をする必要があります．
 
