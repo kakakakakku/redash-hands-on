@@ -9,7 +9,7 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 
 ## 環境構築
 
-Docker Compose で Redash (v2.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
+Docker Compose で Redash (v4.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
@@ -48,34 +48,46 @@ $ docker-compose up
 
 なお，Redash 環境の構築方法は Docker Compose 以外にもあります．興味のある方は，公式ドキュメントを読んでみましょう．
 
-- [Setting up a Redash instance · Redash Help Center](https://redash.io/help-onpremise/setup/setting-up-redash-instance.html)
+- [Setting up a Redash Instance | Redash](https://redash.io/help/open-source/setup)
 
 ## データソース設定
 
 次に Redash から MySQL に接続できるように「データソース」を設定します．
 
-画面右上にあるデータソースアイコンをクリックし，次に「New Data Source」ボタンをクリックします．
+ログイン後の画面にある「1. Connect a Data Source」のリンクをクリックし，「New Data Source」ボタンをクリックします．
+
+次に右側にある「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
+
+![](images/data_sources.png)
 
 以下の通りに設定したら「Save → Test Connection」とクリックし，接続確認をしましょう．Success と画面右下に表示されます．なお，今回はテストデータとして `world` データベースを使います．
 
 | 項目 | 値 |
 | --- | --- |
-| Type | MySQL |
 | Name | MySQL |
 | Host | mysql |
 | Port | 3306 |
 | User | root |
 | Password | - |
-| Database name | world |
-| Path to private key file (SSL) | - |
-| Path to client certificate file (SSL) | - |
-| Path to CA certificate file to verify peer against (SSL) | - |
+| Database Name | world |
 
 ![](images/data_source.png)
 
+## 日付フォーマット設定
+
+画面右上にある Settings アイコンをクリックし，「Settings」タブをクリックします．
+
+日付フォーマットを以下の通りに変更します．
+
+- General
+    - Date Format
+        - YYYY-MM-DD
+
+![](images/settings.png)
+
 ## クエリを作ってみよう
 
-ナビバーから「Queries → New Query」とクリックし，以下のクエリを入力しましょう．
+ナビバーから「Create → Query」とクリックし，以下のクエリを入力しましょう．
 
 ```sql
 SELECT * FROM country;
@@ -97,7 +109,7 @@ SELECT * FROM country;
 SELECT COUNT(*) AS COUNT FROM country;
 ```
 
-「TABLE」 タブの横に表示されている「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されます．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
+「TABLE」 タブの横に表示されている「+ New Visualization」タブをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されます．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
 
 - Visualization Type
     - `Counter`
@@ -112,7 +124,7 @@ SELECT COUNT(*) AS COUNT FROM country;
 SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
 ```
 
-もう1度「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をします．先ほどとの違いは「Target Value Column Name」の設定を追加した点です．このようにクエリを活用することで，目標値と実績値を一緒に可視化することができます．
+もう1度「+ New Visualization」タブをクリックし，以下の通りに設定をします．先ほどとの違いは「Target Value Column Name」の設定を追加した点です．このようにクエリを活用することで，目標値と実績値を一緒に可視化することができます．
 
 `Counter` に「目標値」を設定した場合，値が実績を下回る場合は赤く表示され，上回る場合は緑で表示されます．
 
@@ -142,18 +154,19 @@ GROUP BY CountryCode
 ORDER BY COUNT DESC;
 ```
 
-先ほどと同様に「+ NEW VISUALIZATION」タブをクリックし，以下の通りに設定をすると，円グラフを作ることができます．
+先ほどと同様に「+ New Visualization」タブをクリックし，以下の通りに設定をすると，円グラフを作ることができます．
 
 - Visualization Type
     - `Chart`
 - Visualization Name
     - `都市の件数`
-- Chart Type
-    - `Pie`
-- X Column
-    - `CountryCode`
-- Y Columns
-    - `COUNT`
+- General
+    - Chart Type
+        - `Pie`
+    - X Column
+        - `CountryCode`
+    - Y Columns
+        - `COUNT`
 
 ![](images/query_city_pie.png)
 
@@ -163,12 +176,13 @@ ORDER BY COUNT DESC;
     - `Chart`
 - Visualization Name
     - `都市の件数（棒グラフ）`
-- Chart Type
-    - `Bar`
-- X Column
-    - `CountryCode`
-- Y Columns
-    - `COUNT`
+- General
+    - Chart Type
+        - `Bar`
+    - X Column
+        - `CountryCode`
+    - Y Columns
+        - `COUNT`
 
 しかし，棒グラフの場合，このままではグラフが表示されません．「GENERAL」タブの隣にある「X AXIS」タブをクリックし，軸の設定をする必要があります．
 
@@ -187,52 +201,44 @@ ORDER BY COUNT DESC;
 
 次にダッシュボードを作ってみましょう．
 
-ナビバーから「Dashboards → New Dashboard」とクリックし，ダッシュボードタイトルに「ハンズオン:国ダッシュボード」と入力しましょう．
+ナビバーから「Create → Dashboard」とクリックし，ダッシュボードタイトルに「ハンズオン:国ダッシュボード」と入力しましょう．
 
 ポイントは `グループ名:ダッシュボード名` という命名規則にすることです．
 
 Redash には Grouping Dashboards という機能があり，ダッシュボードタイトルにコロンを含めることで，同じグループのダッシュボードをまとめて管理することができます．詳しくは公式ドキュメントを読んでみましょう．
 
-- [How to Create a Dashboard? · Redash Help Center](https://redash.io/help/dashboards/dashboards.html)
+- [Creating and Editing Dashboards | Redash](https://redash.io/help/user-guide/dashboards/dashboard-editing)
 
 次にダッシュボードにグラフを配置していきます．
 
-画面右側にあるメニューから「Add Widget」をクリックします．すると「Add Widget」というモーダルが表示されるため，以下の設定を繰り返し行いましょう．
+画面右側にあるメニューから「Add Widget」をクリックします．すると「Add Widget」というモーダルが表示されるため，以下の設定を繰り返し行いましょう．レイアウトは自由に変更することができます．
 
 - 1回目
     - Visualization
         - `国の一覧`
     - Choose Visualization
         - `Table`
-    - Widget Size
-        - `Double`
 - 2回目
     - Visualization
         - `国の件数`
     - Choose Visualization
         - `国の件数（+ 目標値）`
-    - Widget Size
-        - `Regular`
 - 3回目
     - Visualization
         - `都市の件数`
     - Choose Visualization
         - `都市の件数`
-    - Widget Size
-        - `Regular`
 - 4回目
     - Visualization
         - `都市の件数`
     - Choose Visualization
         - `都市の件数（棒グラフ）`
-    - Widget Size
-        - `Double`
 
 「Visualization」にクエリが表示されない場合は，そのクエリが公開されていないことが考えられます．
 
-ナビバーの「Queries → Queries」で `Unpublished` 状態になっているクエリがあったら，そのクエリを公開し，再度ダッシュボードにグラフを追加してみましょう．
+ナビバーの「Queries」で `Unpublished` 状態になっているクエリがあったら，そのクエリを公開し，再度ダッシュボードにグラフを追加してみましょう．
 
-最後に画面右側にあるメニューから「Publish Dashboard」をクリックしましょう．クエリ同様にダッシュボードも他のユーザーに共有することができます．
+最後に画面右側にある「Apply Changes」をクリックし，続けて「Publish」をクリックしましょう．クエリ同様にダッシュボードも他のユーザーに共有することができます．
 
 ![](images/dashboard_country.png)
 
@@ -257,6 +263,7 @@ SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DES
 - Text
 - Number
 - Dropdown List
+- Query Based Dropdown List
 - Date
 - Date and Time
 - Date and Time (with seconds)
@@ -292,7 +299,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 フィルタ機能は非常に便利です．詳しくは公式ドキュメントを読んでみましょう．
 
-- [Exploring Schemas · Redash Help Center](https://redash.io/help/queries/writing_queries.html)
+- [Query Filters | Redash](https://redash.io/help/user-guide/querying/query-filters)
 
 クエリタイトルを「都市のフィルタ」にして保存しておきましょう．
 
@@ -302,7 +309,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 Redash では，よく使うクエリ（もしくはクエリの一部）をクエリスニペットとして登録する機能があります．
 
-画面右上にあるデータソースアイコンをクリックし，「QUERY SNIPPETS」タブをクリックします．
+画面右上にある Settings アイコンをクリックし，「Query Snippets」タブをクリックします．
 
 次に「New Snippet」ボタンをクリックすると登録画面が表示されます．以下の設定をしたら「Save」ボタンを押しましょう．
 
@@ -340,7 +347,7 @@ Redash では，クエリ結果に HTML を埋め込むことができます．�
 SELECT *,
        CASE
            WHEN Population > 1000000000 THEN '<div class="bg-success p-30 text-center">AAA</div>'
-           WHEN Population > 100000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
+           WHEN Population > 140000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
            ELSE '<div class="bg-danger p-10 text-center">CCC</div>'
        END AS Color
 FROM country
@@ -351,7 +358,7 @@ ORDER BY Population DESC;
 
 クエリタイトルを「国の一覧（色付き）」にして保存しておきましょう．他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
 
-- [Conditional Formatting & General Text Formatting - Redash Knowledge Base](http://help.redash.io/article/136-condition)
+- [Conditional Formatting & General Text Formatting - Tips, Tricks & Query Examples - Redash Discourse](https://discuss.redash.io/t/conditional-formatting-general-text-formatting/1706)
 
 ![](images/query_country_with_color.png)
 
@@ -359,19 +366,17 @@ ORDER BY Population DESC;
 
 ダッシュボードに複数のグラフを配置する場合，関連する URL などを載せておくと便利な場合があります．
 
-ダッシュボードにフリーテキストを入力する方法もありますが，Redash ではクエリ結果が URL 形式の場合に自動的にリンクになるため，この機能を使うと便利です．
+ダッシュボードにフリーテキストを入力する方法もありますが，Redash では，クエリ結果に HTML を埋め込むことができるため，簡単にリンクを作成することができます．
 
-以下の新規クエリを作成してみましょう．
+以下の新規クエリを作成し，クエリタイトルを「リンク集」にして保存しておきましょう．
 
 ```sql
-SELECT 'Google' AS name, 'https://www.google.co.jp/' AS url
+SELECT '<a href="https://www.google.co.jp/">Google</a>' AS name
 UNION
-SELECT 'Yahoo!', 'https://www.yahoo.co.jp/'
+SELECT '<a href="https://www.yahoo.co.jp/">Yahoo!</a>'
 UNION
-SELECT 'Bing', 'https://www.bing.com/';
+SELECT '<a href="https://www.bing.com/">Bing</a>';
 ```
-
-自動的に URL がリンクになっていると思います．クエリタイトルを「リンク集」にして保存しておきましょう．
 
 ![](images/query_urls.png)
 
@@ -379,9 +384,9 @@ SELECT 'Bing', 'https://www.bing.com/';
 
 Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と Excel です．
 
-ナビバーから「Queries → Queries」とクリックし，既に作ったクエリ「国の一覧」を開きましょう．
+ナビバーの「Queries」をクリックし，既に作ったクエリ「国の一覧」を開きましょう．
 
-画面右側にある「Download Dataset」ボタンを押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
+画面下にある「Download Dataset」ボタンを押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
 
 - Download as CSV File
 - Download as Excel File
@@ -394,9 +399,7 @@ Redash では，クエリ結果をダウンロードすることができます�
 
 チームで使っていると「メンバーが作ったクエリを少しカスタマイズしたい」と感じる場面があります．そのために Redash には「フォーク機能」があります．
 
-既に作ったクエリ「国の一覧」を開き，画面右上にある「Show Source」ボタンをクリックしましょう．見慣れたクエリ作成画面に遷移します．
-
-次に「Save」ボタンの隣りにある「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを「Copy of (#1) 国の一覧」から「国の一覧（カスタマイズ）」と変更しましょう．
+既に作ったクエリ「国の一覧」を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを「Copy of (#1) 国の一覧」から「国の一覧（カスタマイズ）」に変更しましょう．
 
 クエリを自由に変更できるため，以下のクエリを入力し，実行しましょう．表示するカラムを「国コード」と「名前」と「人口」にカスタマイズできました．
 
@@ -414,10 +417,8 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 まず，Slack で Incoming WebHooks を作成します．そのままでも使えますが，「Customize Name」に `Redash Alerts`，「Customize Icon」に Redash のロゴ画像などを設定しておくと便利です．「Webhook URL」の値は次に使います．
 
-次に画面右上にあるデータソースアイコンをクリックし，「ALERT DESTINATIONS」タブにある「New Alert Destination」ボタンをクリックしましょう．登録画面で以下を設定します．
+画面右上にある Settings アイコンをクリックし，「Alert Destinations」タブにある「New Alert Destination」ボタンをクリックしましょう．次に「Slack」をクリックし，登録画面で以下を設定します．
 
-- Type
-    - `Slack`
 - Name
     - `Slack`
 - Slack Webhook URL
@@ -427,13 +428,13 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 アラートを設定する前に，もう少し準備をしておく必要があります．
 
-既に作成をした「国の件数」クエリを開き，「Refresh Schedule」を有効にする必要があります．今回は `Every minute` にしましょう．
+既に作成をした「国の件数」クエリを開き，「Refresh Schedule」を有効にする必要があります．今回は `Every 1 minute` にしましょう．
 
 今回の例では，国の件数に変化はありませんが，定期的にクエリの実行をする機能です．アラートの設定をするクエリには「Refresh Schedule」の設定が必要です．
 
 ![](images/refresh_schedule.png)
 
-最後はアラートの設定です．ナビバーから「Alerts」をクリックし，「New Alert」の画面を開きます．以下のエラーが出る場合がありますが，問題ありません．
+最後はアラートの設定です．ナビバーから「Create → Alert」をクリックし，「New Alert」の画面を開きます．以下のエラーが出る場合がありますが，問題ありません．
 
 >It looks like your mail server isn't configured. Make sure to configure it for the alert emails to work.
 
