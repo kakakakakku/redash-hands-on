@@ -1,5 +1,7 @@
 # redash-hands-on
 
+[![GitHub stars](https://img.shields.io/github/stars/kakakakakku/redash-hands-on.svg?style=for-the-badge)](https://github.com/kakakakakku/redash-hands-on/stargazers)
+
 ## 前提
 
 Redash ハンズオン資料は以下の環境を前提に動作確認をしています．
