@@ -7,7 +7,7 @@
 version: '2'
 services:
   server:
-    image: redash/redash:4.0.2.b4720
+    image: redash/redash:5.0.1.b4850
     command: server
     depends_on:
       - postgres
@@ -22,7 +22,7 @@ services:
       REDASH_COOKIE_SECRET: veryverysecret
       REDASH_WEB_WORKERS: 4
   worker:
-    image: redash/redash:4.0.2.b4720
+    image: redash/redash:5.0.1.b4850
     command: scheduler
     environment:
       PYTHONUNBUFFERED: 0
@@ -47,7 +47,7 @@ services:
     links:
       - server:redash
   mysql:
-    image: kakakakakku/mysql-57-world-database
+    image: kakakakakku/mysql-world-database:5.7
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       TZ: Japan
