@@ -368,7 +368,9 @@ SELECT * FROM city _
 Redash では，クエリ結果に HTML を埋め込むことができます．さっそく以下の新規クエリを作成してみましょう．
 
 ```sql
-SELECT *,
+SELECT Code,
+       Name,
+       Population,
        CASE
            WHEN Population > 1000000000 THEN '<div class="bg-success p-30 text-center">AAA</div>'
            WHEN Population > 140000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
