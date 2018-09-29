@@ -493,3 +493,31 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 すると，Slack にアラートが通知されます．確認ができたら「Rearm seconds」をブランクにして「Save」をクリックしておきましょう．
 
 ![](images/slack_alerts.png)
+
+## Redash ユーザーを追加／無効化しよう
+
+次に，Redash 管理者として Redash ユーザーを追加／無効化する運用手順を試してみましょう．
+
+まず，画面右上のメニューから「Users」をクリックし，次に「New User」ボタンをクリックします．なお，登録画面に以下のエラーが出る場合がありますが，問題ありません．
+
+>It looks like your mail server isn't configured. Make sure to configure it for the alert emails to work.
+
+以下の通りに，Redash ユーザーを2個登録します．なお，2個目を登録する際は，タブの「Users」をクリックする必要があります．登録が終わったら，もう1度タブの「Users」をクリックし，ユーザー一覧で確認をしましょう．
+
+- New User
+    - Name
+        - `RedashUser1`
+    - Email
+        - `redashuser1@example.com`
+    - Name
+        - `RedashUser2`
+    - Email
+        - `redashuser2@example.com`
+
+![](images/users.png)
+
+メンバーの退職など，Redash ユーザーを削除する場合はどうしたら良いのでしょう？
+
+Redash にはユーザーを削除する機能はありませんが，ユーザーを無効化する手順があります．ユーザー一覧で「RedashUser2」の「Disable」ボタンを押してみましょう．すると，画面から消え，隣の「Disabled Users」タブに移動したことが確認できます．無効化を解除する場合は「Enable」ボタンをクリックします．
+
+![](images/disabled_users.png)
