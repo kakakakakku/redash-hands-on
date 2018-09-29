@@ -84,7 +84,7 @@ $ docker-compose up
 
 - General
     - Date Format
-        - YYYY-MM-DD
+        - `YYYY-MM-DD`
 
 ![](images/settings.png)
 
