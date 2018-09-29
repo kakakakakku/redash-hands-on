@@ -10,6 +10,12 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - Docker For Mac
 - Docker For Windows
 
+なお，Redash のバージョンごとにハンズオン資料を用意しています．最新バージョン以外を使う場合は，以下のタグから参照できます．
+
+- [kakakakakku/redash-hands-on at v2.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v2.0.1)
+- [kakakakakku/redash-hands-on at v4.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.1)
+- [kakakakakku/redash-hands-on at v4.0.2](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.2)
+
 ## 環境構築
 
 Docker Compose で Redash (v5.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
