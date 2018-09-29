@@ -315,7 +315,7 @@ Redash では，クエリのカラム名を `カラム名::filter` もしくは 
 SELECT *, CountryCode AS 'CountryCode::filter' FROM city ORDER BY Population DESC;
 ```
 
-次に「マルチフィルタ機能」を試しましょう．クエリを以下のように変更すると，今度は複数の「CountryCode」でフィルタできるようになります．
+次に「マルチフィルタ機能」を試しましょう．クエリを以下のように変更すると，今度は複数の「CountryCode」でフィルタできるようになります．なお，今回も「Format Query」を実行しておきましょう．
 
 ```sql
 SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Population DESC;
