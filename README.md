@@ -437,7 +437,14 @@ SELECT Code, Name, Population FROM country;
 
 ## アラートを設定しよう
 
-Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを通知する機能があります．
+Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを通知する機能があります．通知先は以下から選ぶことができます．
+
+- ChatWork
+- Slack
+- Webhook
+- HipChat
+- Mattermost
+- Email
 
 Slack に Webhook 経由でアラートを通知してみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
 
