@@ -267,7 +267,7 @@ Redash ではクエリだけではなく，ダッシュボードに対しても�
 
 次はクエリにパラメータを付けてみましょう．
 
-Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．
+Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．なお，クエリを入力した後にクエリの下にある2番目のアイコン「Format Query」をクリックすると，自動的にクエリをフォーマットすることができます．
 
 ```sql
 SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DESC;
@@ -288,6 +288,9 @@ SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DES
 - Date
 - Date and Time
 - Date and Time (with seconds)
+- Date Range
+- Date and Time Range
+- Date and Time Range (with seconds)
 
 今回は便利な「Dropdown List」を試しましょう．
 
