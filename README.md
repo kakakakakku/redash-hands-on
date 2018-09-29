@@ -397,11 +397,11 @@ ORDER BY Population DESC;
 以下の新規クエリを作成し，クエリタイトルを「リンク集」にして保存しておきましょう．
 
 ```sql
-SELECT '<a href="https://www.google.co.jp/">Google</a>' AS name
+SELECT '<a href="https://www.google.co.jp/" target="_blank">Google</a>' AS name
 UNION
-SELECT '<a href="https://www.yahoo.co.jp/">Yahoo!</a>'
+SELECT '<a href="https://www.yahoo.co.jp/" target="_blank">Yahoo!</a>'
 UNION
-SELECT '<a href="https://www.bing.com/">Bing</a>';
+SELECT '<a href="https://www.bing.com/" target="_blank">Bing</a>';
 ```
 
 ![](images/query_urls.png)
