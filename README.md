@@ -1,7 +1,7 @@
 # redash-hands-on
 
 [![GitHub stars](https://img.shields.io/github/stars/kakakakakku/redash-hands-on.svg?style=for-the-badge)](https://github.com/kakakakakku/redash-hands-on/stargazers)
-[![Redash version](https://img.shields.io/badge/redash-v4.0.2-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
+[![Redash version](https://img.shields.io/badge/redash-v5.0.1-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
 
 ## 前提
 
@@ -10,9 +10,15 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - Docker For Mac
 - Docker For Windows
 
+なお，Redash のバージョンごとにハンズオン資料を用意しています．最新バージョン以外を使う場合は，以下のタグから参照できます．
+
+- [kakakakakku/redash-hands-on at v2.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v2.0.1)
+- [kakakakakku/redash-hands-on at v4.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.1)
+- [kakakakakku/redash-hands-on at v4.0.2](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.2)
+
 ## 環境構築
 
-Docker Compose で Redash (v4.0.2) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
+Docker Compose で Redash (v5.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
@@ -84,7 +90,7 @@ $ docker-compose up
 
 - General
     - Date Format
-        - YYYY-MM-DD
+        - `YYYY-MM-DD`
 
 ![](images/settings.png)
 
@@ -103,6 +109,16 @@ SELECT * FROM country;
 さらに「Publish」ボタンをクリックします．Redash ではクエリを公開することで，他のユーザーに共有することができます．
 
 ![](images/query_country.png)
+
+## クエリの「お気に入り登録」と「タグ登録」をしよう
+
+Redash ではクエリに対する「お気に入り登録」と「タグ登録」がサポートされています．
+
+まず，クエリ名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，クエリ名の右にある「Add tag」ボタンをクリックし，2個のタグ「分析チーム」と「マスタデータ」を登録してみましょう．
+
+クエリが増えると探しにくくなってしまうため，積極的に「お気に入り登録」と「タグ登録」を活用しましょう．
+
+![](images/query_country_with_tags.png)
 
 ## グラフを作ってみよう
 
@@ -187,7 +203,7 @@ ORDER BY COUNT DESC;
     - Y Columns
         - `COUNT`
 
-しかし，棒グラフの場合，このままではグラフが表示されません．「GENERAL」タブの隣にある「X AXIS」タブをクリックし，軸の設定をする必要があります．
+しかし，棒グラフの場合，このままでは順序がバラバラです．「GENERAL」タブの隣にある「X AXIS」タブをクリックし，軸の設定をする必要があります．
 
 - Scale
     - `Category`
@@ -214,7 +230,7 @@ Redash には Grouping Dashboards という機能があり，ダッシュボー�
 
 次にダッシュボードにグラフを配置していきます．
 
-画面右側にあるメニューから「Add Widget」をクリックします．すると「Add Widget」というモーダルが表示されるため，以下の設定を繰り返し行いましょう．レイアウトは自由に変更することができます．
+画面右下にあるメニューから「Add Widget」をクリックします．すると「Add Widget」というモーダルが表示されるため，以下の設定を繰り返し行いましょう．レイアウトは自由に変更することができます．
 
 - 1回目
     - Visualization
@@ -241,15 +257,23 @@ Redash には Grouping Dashboards という機能があり，ダッシュボー�
 
 ナビバーの「Queries」で `Unpublished` 状態になっているクエリがあったら，そのクエリを公開し，再度ダッシュボードにグラフを追加してみましょう．
 
-最後に画面右側にある「Apply Changes」をクリックし，続けて「Publish」をクリックしましょう．クエリ同様にダッシュボードも他のユーザーに共有することができます．
+最後に画面右上にある「Apply Changes」をクリックし，続けて「Publish」をクリックしましょう．クエリ同様にダッシュボードも他のユーザーに共有することができます．
 
 ![](images/dashboard_country.png)
+
+## ダッシュボードの「お気に入り登録」と「タグ登録」をしよう
+
+Redash ではクエリだけではなく，ダッシュボードに対しても「お気に入り登録」と「タグ登録」がサポートされています．
+
+まず，ダッシュボード名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，ダッシュボード名の右にある「Add tag」ボタンをクリックし，タグ「分析チーム」を登録してみましょう．
+
+![](images/dashboard_country_with_tags.png)
 
 ## パラメータ付きクエリを作ってみよう
 
 次はクエリにパラメータを付けてみましょう．
 
-Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．
+Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．なお，クエリを入力した後にクエリの下にある2番目のアイコン「Format Query」をクリックすると，自動的にクエリをフォーマットすることができます．
 
 ```sql
 SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DESC;
@@ -270,6 +294,9 @@ SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DES
 - Date
 - Date and Time
 - Date and Time (with seconds)
+- Date Range
+- Date and Time Range
+- Date and Time Range (with seconds)
 
 今回は便利な「Dropdown List」を試しましょう．
 
@@ -294,7 +321,7 @@ Redash では，クエリのカラム名を `カラム名::filter` もしくは 
 SELECT *, CountryCode AS 'CountryCode::filter' FROM city ORDER BY Population DESC;
 ```
 
-次に「マルチフィルタ機能」を試しましょう．クエリを以下のように変更すると，今度は複数の「CountryCode」でフィルタできるようになります．
+次に「マルチフィルタ機能」を試しましょう．クエリを以下のように変更すると，今度は複数の「CountryCode」でフィルタできるようになります．なお，今回も「Format Query」を実行しておきましょう．
 
 ```sql
 SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Population DESC;
@@ -347,7 +374,9 @@ SELECT * FROM city _
 Redash では，クエリ結果に HTML を埋め込むことができます．さっそく以下の新規クエリを作成してみましょう．
 
 ```sql
-SELECT *,
+SELECT Code,
+       Name,
+       Population,
        CASE
            WHEN Population > 1000000000 THEN '<div class="bg-success p-30 text-center">AAA</div>'
            WHEN Population > 140000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
@@ -374,11 +403,11 @@ ORDER BY Population DESC;
 以下の新規クエリを作成し，クエリタイトルを「リンク集」にして保存しておきましょう．
 
 ```sql
-SELECT '<a href="https://www.google.co.jp/">Google</a>' AS name
+SELECT '<a href="https://www.google.co.jp/" target="_blank">Google</a>' AS name
 UNION
-SELECT '<a href="https://www.yahoo.co.jp/">Yahoo!</a>'
+SELECT '<a href="https://www.yahoo.co.jp/" target="_blank">Yahoo!</a>'
 UNION
-SELECT '<a href="https://www.bing.com/">Bing</a>';
+SELECT '<a href="https://www.bing.com/" target="_blank">Bing</a>';
 ```
 
 ![](images/query_urls.png)
@@ -404,7 +433,7 @@ Redash では，クエリ結果をダウンロードすることができます�
 
 既に作ったクエリ「国の一覧」を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを「Copy of (#1) 国の一覧」から「国の一覧（カスタマイズ）」に変更しましょう．
 
-クエリを自由に変更できるため，以下のクエリを入力し，実行しましょう．表示するカラムを「国コード」と「名前」と「人口」にカスタマイズできました．
+クエリを自由に変更できるため，以下のクエリを入力し，実行しましょう．表示するカラムを「国コード」と「名前」と「人口」にカスタマイズできました．なお，今回も「Format Query」を実行しておきましょう．
 
 ```sql
 SELECT Code, Name, Population FROM country;
@@ -414,7 +443,14 @@ SELECT Code, Name, Population FROM country;
 
 ## アラートを設定しよう
 
-Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを通知する機能があります．
+Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを通知する機能があります．通知先は以下から選ぶことができます．
+
+- ChatWork
+- Slack
+- Webhook
+- HipChat
+- Mattermost
+- Email
 
 Slack に Webhook 経由でアラートを通知してみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
 
@@ -463,3 +499,31 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 すると，Slack にアラートが通知されます．確認ができたら「Rearm seconds」をブランクにして「Save」をクリックしておきましょう．
 
 ![](images/slack_alerts.png)
+
+## Redash ユーザーを追加／無効化しよう
+
+次に，Redash 管理者として Redash ユーザーを追加／無効化する運用手順を試してみましょう．
+
+まず，画面右上のメニューから「Users」をクリックし，次に「New User」ボタンをクリックします．なお，登録画面に以下のエラーが出る場合がありますが，問題ありません．
+
+>It looks like your mail server isn't configured. Make sure to configure it for the alert emails to work.
+
+以下の通りに，Redash ユーザーを2個登録します．なお，2個目を登録する際は，タブの「Users」をクリックする必要があります．登録が終わったら，もう1度タブの「Users」をクリックし，ユーザー一覧で確認をしましょう．
+
+- New User
+    - Name
+        - `RedashUser1`
+    - Email
+        - `redashuser1@example.com`
+    - Name
+        - `RedashUser2`
+    - Email
+        - `redashuser2@example.com`
+
+![](images/users.png)
+
+メンバーの退職など，Redash ユーザーを削除する場合はどうしたら良いのでしょう？
+
+Redash にはユーザーを削除する機能はありませんが，ユーザーを無効化する手順があります．ユーザー一覧で「RedashUser2」の「Disable」ボタンを押してみましょう．すると，画面から消え，隣の「Disabled Users」タブに移動したことが確認できます．無効化を解除する場合は「Enable」ボタンをクリックします．
+
+![](images/disabled_users.png)
