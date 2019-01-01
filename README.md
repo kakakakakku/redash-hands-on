@@ -1,7 +1,7 @@
 # redash-hands-on
 
 [![GitHub stars](https://img.shields.io/github/stars/kakakakakku/redash-hands-on.svg?style=for-the-badge)](https://github.com/kakakakakku/redash-hands-on/stargazers)
-[![Redash version](https://img.shields.io/badge/redash-v5.0.1-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
+[![Redash version](https://img.shields.io/badge/redash-v6.0.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
 
 ## 前提
 
@@ -105,7 +105,7 @@ SELECT * FROM country;
 
 入力したら「Execute」ボタンをクリックしてクエリを実行します．すると「国の一覧」が取得できます．
 
-クエリの実行ができたら，画面左上の「New Query」という部分をクリックし，クエリタイトルを「国の一覧」に変更します．忘れずに画面右側にある「Save」ボタンをクリックしましょう．
+クエリの実行ができたら，画面左上の「New Query」という部分をクリックし，クエリタイトルを **「国の一覧」** に変更します．忘れずに画面右側にある「Save」ボタンをクリックしましょう．
 
 さらに「Publish」ボタンをクリックします．Redash ではクエリを公開することで，他のユーザーに共有することができます．
 
@@ -115,7 +115,7 @@ SELECT * FROM country;
 
 Redash ではクエリに対する「お気に入り登録」と「タグ登録」がサポートされています．
 
-まず，クエリ名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，クエリ名の右にある「Add tag」ボタンをクリックし，2個のタグ「分析チーム」と「マスタデータ」を登録してみましょう．
+まず，クエリ名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，クエリ名の右にある「Add tag」ボタンをクリックし，2個のタグ **「分析チーム」** と **「マスタデータ」** を登録してみましょう．
 
 クエリが増えると探しにくくなってしまうため，積極的に「お気に入り登録」と「タグ登録」を活用しましょう．
 
@@ -157,7 +157,7 @@ SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
 - Target Value Column Name
     - `kpi`
 
-クエリタイトルを「国の件数」とし，忘れずに保存と公開をしておきましょう．
+クエリタイトルを **「国の件数」** とし，忘れずに保存と公開をしておきましょう．
 
 ![](images/query_country_with_kpi.png)
 
@@ -213,7 +213,7 @@ ORDER BY COUNT DESC;
 
 これで棒グラフも作れました．
 
-クエリタイトルを「都市の件数」とし，忘れずに保存と公開をしておきましょう．
+クエリタイトルを **「都市の件数」** とし，忘れずに保存と公開をしておきましょう．
 
 ![](images/query_city_bar.png)
 
@@ -221,7 +221,7 @@ ORDER BY COUNT DESC;
 
 次にダッシュボードを作ってみましょう．
 
-ナビバーから「Create → Dashboard」とクリックし，ダッシュボードタイトルに「ハンズオン:国ダッシュボード」と入力しましょう．
+ナビバーから「Create → Dashboard」とクリックし，ダッシュボードタイトルに **「ハンズオン:国ダッシュボード」** と入力しましょう．
 
 ポイントは `グループ名:ダッシュボード名` という命名規則にすることです．
 
@@ -266,7 +266,7 @@ Redash には Grouping Dashboards という機能があり，ダッシュボー�
 
 Redash ではクエリだけではなく，ダッシュボードに対しても「お気に入り登録」と「タグ登録」がサポートされています．
 
-まず，ダッシュボード名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，ダッシュボード名の右にある「Add tag」ボタンをクリックし，タグ「分析チーム」を登録してみましょう．
+まず，ダッシュボード名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，ダッシュボード名の右にある「Add tag」ボタンをクリックし，タグ **「分析チーム」** を登録してみましょう．
 
 ![](images/dashboard_country_with_tags.png)
 
@@ -285,7 +285,7 @@ ORDER BY Population DESC;
 
 すると，画面左下に「CountryCode」をパラメータとして入力するテキストエリアが表示されます．
 
-ここに「JPN」を入力し，クエリを実行すると，日本の都市を人口の多い順に取得することができます．クエリタイトルを「都市の検索」にして保存しておきましょう．
+ここに「JPN」を入力し，クエリを実行すると，日本の都市を人口の多い順に取得することができます．クエリタイトルを **「都市の検索」** にして保存しておきましょう．
 
 ![](images/query_city_search.png)
 
@@ -335,7 +335,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 - [Query Filters | Redash](https://redash.io/help/user-guide/querying/query-filters)
 
-クエリタイトルを「都市のフィルタ」にして保存しておきましょう．
+クエリタイトルを **「都市のフィルタ」** にして保存しておきましょう．
 
 ![](images/query_city_filter.png)
 
@@ -392,7 +392,7 @@ ORDER BY Population DESC;
 
 「Population」の値によって「緑黄赤」と色を変えています．さらに縦サイズも変えています．このように活用すると，よりクエリ結果を便利に使うことができます．
 
-クエリタイトルを「国の一覧（色付き）」にして保存しておきましょう．他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
+クエリタイトルを **「国の一覧（色付き）」** にして保存しておきましょう．他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
 
 - [Conditional Formatting & General Text Formatting - Tips, Tricks & Query Examples - Redash Discourse](https://discuss.redash.io/t/conditional-formatting-general-text-formatting/1706)
 
@@ -404,7 +404,7 @@ ORDER BY Population DESC;
 
 ダッシュボードにフリーテキストを入力する方法もありますが，Redash では，クエリ結果に HTML を埋め込むことができるため，簡単にリンクを作成することができます．
 
-以下の新規クエリを作成し，クエリタイトルを「リンク集」にして保存しておきましょう．
+以下の新規クエリを作成し，クエリタイトルを **「リンク集」** にして保存しておきましょう．
 
 ```sql
 SELECT '<a href="https://www.google.co.jp/" target="_blank">Google</a>' AS name
@@ -420,7 +420,7 @@ SELECT '<a href="https://www.bing.com/" target="_blank">Bing</a>';
 
 Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と Excel です．
 
-ナビバーの「Queries」をクリックし，既に作ったクエリ「国の一覧」を開きましょう．
+ナビバーの「Queries」をクリックし，既に作ったクエリ **「国の一覧」** を開きましょう．
 
 画面下にある「縦点」ボタン（Edit Visualization ボタンの右にある）を押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
 
@@ -435,7 +435,7 @@ Redash では，クエリ結果をダウンロードすることができます�
 
 チームで使っていると「メンバーが作ったクエリを少しカスタマイズしたい」と感じる場面があります．そのために Redash には「フォーク機能」があります．
 
-既に作ったクエリ「国の一覧」を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを「Copy of (#1) 国の一覧」から「国の一覧（カスタマイズ）」に変更しましょう．
+既に作ったクエリ「国の一覧」を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを **「Copy of (#1) 国の一覧」** から **「国の一覧（カスタマイズ）」** に変更しましょう．
 
 クエリを自由に変更できるため，以下のクエリを入力し，実行しましょう．表示するカラムを「国コード」と「名前」と「人口」にカスタマイズできました．なお，今回も「Format Query」を実行しておきましょう．
 
