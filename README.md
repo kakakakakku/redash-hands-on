@@ -450,6 +450,7 @@ SELECT Code, Name, Population FROM country;
 Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを通知する機能があります．通知先は以下から選ぶことができます．
 
 - ChatWork
+- PagerDuty
 - Slack
 - Webhook
 - HipChat
@@ -471,7 +472,7 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 アラートを設定する前に，もう少し準備をしておく必要があります．
 
-既に作成をした「国の件数」クエリを開き，「Refresh Schedule」を有効にする必要があります．今回は `Every 1 minute` にしましょう．
+既に作成をした「国の件数」クエリを開き，画面左下にある「Refresh Schedule」を有効にする必要があります．今回は `Every 1 minute` にしましょう．
 
 今回の例では，国の件数に変化はありませんが，定期的にクエリの実行をする機能です．アラートの設定をするクエリには「Refresh Schedule」の設定が必要です．
 
