@@ -15,10 +15,11 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - [kakakakakku/redash-hands-on at v2.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v2.0.1)
 - [kakakakakku/redash-hands-on at v4.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.1)
 - [kakakakakku/redash-hands-on at v4.0.2](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.2)
+- [kakakakakku/redash-hands-on at v5.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v5.0.1)
 
 ## 環境構築
 
-Docker Compose で Redash (v5.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
+Docker Compose で Redash (v6.0.0) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
@@ -65,7 +66,7 @@ $ docker-compose up
 
 ログイン後の画面にある「1. Connect a Data Source」のリンクをクリックし，「New Data Source」ボタンをクリックします．
 
-次に右側にある「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
+次に「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
 
 ![](images/data_sources.png)
 
