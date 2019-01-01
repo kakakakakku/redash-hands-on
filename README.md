@@ -1,7 +1,7 @@
 # redash-hands-on
 
 [![GitHub stars](https://img.shields.io/github/stars/kakakakakku/redash-hands-on.svg?style=for-the-badge)](https://github.com/kakakakakku/redash-hands-on/stargazers)
-[![Redash version](https://img.shields.io/badge/redash-v5.0.1-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
+[![Redash version](https://img.shields.io/badge/redash-v6.0.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
 
 ## 前提
 
@@ -15,10 +15,11 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - [kakakakakku/redash-hands-on at v2.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v2.0.1)
 - [kakakakakku/redash-hands-on at v4.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.1)
 - [kakakakakku/redash-hands-on at v4.0.2](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.2)
+- [kakakakakku/redash-hands-on at v5.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v5.0.1)
 
 ## 環境構築
 
-Docker Compose で Redash (v5.0.1) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
+Docker Compose で Redash (v6.0.0) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
@@ -65,7 +66,7 @@ $ docker-compose up
 
 ログイン後の画面にある「1. Connect a Data Source」のリンクをクリックし，「New Data Source」ボタンをクリックします．
 
-次に右側にある「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
+次に「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
 
 ![](images/data_sources.png)
 
@@ -104,7 +105,7 @@ SELECT * FROM country;
 
 入力したら「Execute」ボタンをクリックしてクエリを実行します．すると「国の一覧」が取得できます．
 
-クエリの実行ができたら，画面左上の「New Query」という部分をクリックし，クエリタイトルを「国の一覧」に変更します．忘れずに画面右側にある「Save」ボタンをクリックしましょう．
+クエリの実行ができたら，画面左上の「New Query」という部分をクリックし，クエリタイトルを **「国の一覧」** に変更します．忘れずに画面右側にある「Save」ボタンをクリックしましょう．
 
 さらに「Publish」ボタンをクリックします．Redash ではクエリを公開することで，他のユーザーに共有することができます．
 
@@ -114,7 +115,7 @@ SELECT * FROM country;
 
 Redash ではクエリに対する「お気に入り登録」と「タグ登録」がサポートされています．
 
-まず，クエリ名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，クエリ名の右にある「Add tag」ボタンをクリックし，2個のタグ「分析チーム」と「マスタデータ」を登録してみましょう．
+まず，クエリ名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，クエリ名の右にある「Add tag」ボタンをクリックし，2個のタグ **「分析チーム」** と **「マスタデータ」** を登録してみましょう．
 
 クエリが増えると探しにくくなってしまうため，積極的に「お気に入り登録」と「タグ登録」を活用しましょう．
 
@@ -156,7 +157,7 @@ SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
 - Target Value Column Name
     - `kpi`
 
-クエリタイトルを「国の件数」とし，忘れずに保存と公開をしておきましょう．
+クエリタイトルを **「国の件数」** とし，忘れずに保存と公開をしておきましょう．
 
 ![](images/query_country_with_kpi.png)
 
@@ -212,7 +213,7 @@ ORDER BY COUNT DESC;
 
 これで棒グラフも作れました．
 
-クエリタイトルを「都市の件数」とし，忘れずに保存と公開をしておきましょう．
+クエリタイトルを **「都市の件数」** とし，忘れずに保存と公開をしておきましょう．
 
 ![](images/query_city_bar.png)
 
@@ -220,7 +221,7 @@ ORDER BY COUNT DESC;
 
 次にダッシュボードを作ってみましょう．
 
-ナビバーから「Create → Dashboard」とクリックし，ダッシュボードタイトルに「ハンズオン:国ダッシュボード」と入力しましょう．
+ナビバーから「Create → Dashboard」とクリックし，ダッシュボードタイトルに **「ハンズオン:国ダッシュボード」** と入力しましょう．
 
 ポイントは `グループ名:ダッシュボード名` という命名規則にすることです．
 
@@ -265,7 +266,7 @@ Redash には Grouping Dashboards という機能があり，ダッシュボー�
 
 Redash ではクエリだけではなく，ダッシュボードに対しても「お気に入り登録」と「タグ登録」がサポートされています．
 
-まず，ダッシュボード名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，ダッシュボード名の右にある「Add tag」ボタンをクリックし，タグ「分析チーム」を登録してみましょう．
+まず，ダッシュボード名の左にある星アイコンをクリックし，お気に入り登録をしてみましょう．次に，ダッシュボード名の右にある「Add tag」ボタンをクリックし，タグ **「分析チーム」** を登録してみましょう．
 
 ![](images/dashboard_country_with_tags.png)
 
@@ -276,12 +277,15 @@ Redash ではクエリだけではなく，ダッシュボードに対しても�
 Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．なお，クエリを入力した後にクエリの下にある2番目のアイコン「Format Query」をクリックすると，自動的にクエリをフォーマットすることができます．
 
 ```sql
-SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DESC;
+SELECT *
+FROM city
+WHERE CountryCode = '{{CountryCode}}'
+ORDER BY Population DESC;
 ```
 
 すると，画面左下に「CountryCode」をパラメータとして入力するテキストエリアが表示されます．
 
-ここに「JPN」を入力し，クエリを実行すると，日本の都市を人口の多い順に取得することができます．クエリタイトルを「都市の検索」にして保存しておきましょう．
+ここに「JPN」を入力し，クエリを実行すると，日本の都市を人口の多い順に取得することができます．クエリタイトルを **「都市の検索」** にして保存しておきましょう．
 
 ![](images/query_city_search.png)
 
@@ -331,7 +335,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 - [Query Filters | Redash](https://redash.io/help/user-guide/querying/query-filters)
 
-クエリタイトルを「都市のフィルタ」にして保存しておきましょう．
+クエリタイトルを **「都市のフィルタ」** にして保存しておきましょう．
 
 ![](images/query_city_filter.png)
 
@@ -388,7 +392,7 @@ ORDER BY Population DESC;
 
 「Population」の値によって「緑黄赤」と色を変えています．さらに縦サイズも変えています．このように活用すると，よりクエリ結果を便利に使うことができます．
 
-クエリタイトルを「国の一覧（色付き）」にして保存しておきましょう．他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
+クエリタイトルを **「国の一覧（色付き）」** にして保存しておきましょう．他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
 
 - [Conditional Formatting & General Text Formatting - Tips, Tricks & Query Examples - Redash Discourse](https://discuss.redash.io/t/conditional-formatting-general-text-formatting/1706)
 
@@ -400,7 +404,7 @@ ORDER BY Population DESC;
 
 ダッシュボードにフリーテキストを入力する方法もありますが，Redash では，クエリ結果に HTML を埋め込むことができるため，簡単にリンクを作成することができます．
 
-以下の新規クエリを作成し，クエリタイトルを「リンク集」にして保存しておきましょう．
+以下の新規クエリを作成し，クエリタイトルを **「リンク集」** にして保存しておきましょう．
 
 ```sql
 SELECT '<a href="https://www.google.co.jp/" target="_blank">Google</a>' AS name
@@ -416,9 +420,9 @@ SELECT '<a href="https://www.bing.com/" target="_blank">Bing</a>';
 
 Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と Excel です．
 
-ナビバーの「Queries」をクリックし，既に作ったクエリ「国の一覧」を開きましょう．
+ナビバーの「Queries」をクリックし，既に作ったクエリ **「国の一覧」** を開きましょう．
 
-画面下にある「Download Dataset」ボタンを押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
+画面下にある「縦点」ボタン（Edit Visualization ボタンの右にある）を押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
 
 - Download as CSV File
 - Download as Excel File
@@ -431,7 +435,7 @@ Redash では，クエリ結果をダウンロードすることができます�
 
 チームで使っていると「メンバーが作ったクエリを少しカスタマイズしたい」と感じる場面があります．そのために Redash には「フォーク機能」があります．
 
-既に作ったクエリ「国の一覧」を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを「Copy of (#1) 国の一覧」から「国の一覧（カスタマイズ）」に変更しましょう．
+既に作ったクエリ「国の一覧」を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを **「Copy of (#1) 国の一覧」** から **「国の一覧（カスタマイズ）」** に変更しましょう．
 
 クエリを自由に変更できるため，以下のクエリを入力し，実行しましょう．表示するカラムを「国コード」と「名前」と「人口」にカスタマイズできました．なお，今回も「Format Query」を実行しておきましょう．
 
@@ -446,6 +450,7 @@ SELECT Code, Name, Population FROM country;
 Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを通知する機能があります．通知先は以下から選ぶことができます．
 
 - ChatWork
+- PagerDuty
 - Slack
 - Webhook
 - HipChat
@@ -467,7 +472,7 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 アラートを設定する前に，もう少し準備をしておく必要があります．
 
-既に作成をした「国の件数」クエリを開き，「Refresh Schedule」を有効にする必要があります．今回は `Every 1 minute` にしましょう．
+既に作成をした「国の件数」クエリを開き，画面左下にある「Refresh Schedule」を有効にする必要があります．今回は `Every 1 minute` にしましょう．
 
 今回の例では，国の件数に変化はありませんが，定期的にクエリの実行をする機能です．アラートの設定をするクエリには「Refresh Schedule」の設定が必要です．
 
