@@ -4,10 +4,10 @@
 # Some other recommendations:
 # 1. To persist Postgres data, assign it a volume host location.
 # 2. Split the worker service to adhoc workers and scheduled queries workers.
-version: '2'
+version: '3'
 services:
   server:
-    image: redash/redash:5.0.1.b4850
+    image: redash/redash:6.0.0.b8537
     command: server
     depends_on:
       - postgres
@@ -22,7 +22,7 @@ services:
       REDASH_COOKIE_SECRET: veryverysecret
       REDASH_WEB_WORKERS: 4
   worker:
-    image: redash/redash:5.0.1.b4850
+    image: redash/redash:6.0.0.b8537
     command: scheduler
     environment:
       PYTHONUNBUFFERED: 0
@@ -33,9 +33,9 @@ services:
       WORKERS_COUNT: 2
       REDASH_HOST: "http://localhost"
   redis:
-    image: redis:3.0-alpine
+    image: redis:3-alpine
   postgres:
-    image: postgres:9.5.6-alpine
+    image: postgres:9.5-alpine
     # volumes:
     #   - /opt/postgres-data:/var/lib/postgresql/data
   nginx:
