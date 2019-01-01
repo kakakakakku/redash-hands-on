@@ -277,7 +277,10 @@ Redash ではクエリだけではなく，ダッシュボードに対しても�
 Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．なお，クエリを入力した後にクエリの下にある2番目のアイコン「Format Query」をクリックすると，自動的にクエリをフォーマットすることができます．
 
 ```sql
-SELECT * FROM city WHERE CountryCode = '{{CountryCode}}' ORDER BY Population DESC;
+SELECT *
+FROM city
+WHERE CountryCode = '{{CountryCode}}'
+ORDER BY Population DESC;
 ```
 
 すると，画面左下に「CountryCode」をパラメータとして入力するテキストエリアが表示されます．
