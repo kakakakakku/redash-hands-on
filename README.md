@@ -424,7 +424,16 @@ Redash には，クエリを選択実行する機能があります．
 
 分析クエリを書くときにサブクエリや JOIN を活用する場面も多いと思います．サブクエリなどの部分クエリを選択して実行できると便利です．
 
-サブクエリを選択し，「Execute Selected」ボタンをクリックして実行してみましょう．
+以下の新規クエリを作成し，サブクエリを選択し，「Execute Selected」ボタンをクリックして実行してみましょう．
+
+```sql
+SELECT *
+FROM country
+WHERE Code =
+    (SELECT Code
+     FROM country
+     WHERE Name = 'Japan')
+```
 
 ![](images/query_selected.png)
 
