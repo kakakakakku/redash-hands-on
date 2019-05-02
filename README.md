@@ -345,7 +345,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 Redash では，よく使うクエリ（もしくはクエリの一部）をクエリスニペットとして登録する機能があります．
 
-画面右上にある Settings アイコンをクリックし，「Query Snippets」タブをクリックします．
+画面右上にある Settings アイコン（？の右側）をクリックし，「Query Snippets」タブをクリックします．
 
 次に「New Snippet」ボタンをクリックすると登録画面が表示されます．以下の設定をしたら「Save」ボタンを押しましょう．
 
@@ -385,7 +385,7 @@ SELECT Code,
        Population,
        CASE
            WHEN Population > 1000000000 THEN '<div class="bg-success p-30 text-center">AAA</div>'
-           WHEN Population > 140000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
+           WHEN Population > 213000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
            ELSE '<div class="bg-danger p-10 text-center">CCC</div>'
        END AS Color
 FROM country
