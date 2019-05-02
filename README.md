@@ -16,10 +16,11 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - [kakakakakku/redash-hands-on at v4.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.1)
 - [kakakakakku/redash-hands-on at v4.0.2](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.2)
 - [kakakakakku/redash-hands-on at v5.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v5.0.1)
+- [kakakakakku/redash-hands-on at v6.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v6.0.0)
 
 ## 環境構築
 
-Docker Compose で Redash (v6.0.0) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
+Docker Compose で **Redash (v7.0.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
@@ -34,7 +35,7 @@ $ cd redash-hands-on
 
 ```
 $ docker-compose run --rm server create_db
-$ docker-compose up
+$ docker-compose up -d
 ```
 
 起動すると，以下の URL で Redash にアクセスできるようになります．
