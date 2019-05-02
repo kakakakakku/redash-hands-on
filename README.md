@@ -418,6 +418,16 @@ SELECT '<a href="https://www.bing.com/" target="_blank">Bing</a>';
 
 ![](images/query_urls.png)
 
+## クエリを選択実行しよう
+
+Redash には，クエリを選択実行する機能があります．
+
+分析クエリを書くときにサブクエリや JOIN を活用する場面も多いと思います．サブクエリなどの部分クエリを選択して実行できると便利です．
+
+サブクエリを選択し，「Execute Selected」ボタンをクリックして実行してみましょう．
+
+![](images/query_selected.png)
+
 ## クエリ結果をダウンロードしよう
 
 Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と Excel です．
