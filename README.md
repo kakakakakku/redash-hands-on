@@ -1,7 +1,7 @@
 # redash-hands-on
 
 [![GitHub stars](https://img.shields.io/github/stars/kakakakakku/redash-hands-on.svg?style=for-the-badge)](https://github.com/kakakakakku/redash-hands-on/stargazers)
-[![Redash version](https://img.shields.io/badge/redash-v6.0.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
+[![Redash version](https://img.shields.io/badge/redash-v7.0.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
 
 ## 前提
 
@@ -16,10 +16,11 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - [kakakakakku/redash-hands-on at v4.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.1)
 - [kakakakakku/redash-hands-on at v4.0.2](https://github.com/kakakakakku/redash-hands-on/tree/v4.0.2)
 - [kakakakakku/redash-hands-on at v5.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v5.0.1)
+- [kakakakakku/redash-hands-on at v6.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v6.0.0)
 
 ## 環境構築
 
-Docker Compose で Redash (v6.0.0) 環境を構築します．任意のディレクトリに kakakakakku/redash-hands-on リポジトリをクローンしましょう．
+Docker Compose で **Redash (v7.0.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
@@ -34,7 +35,7 @@ $ cd redash-hands-on
 
 ```
 $ docker-compose run --rm server create_db
-$ docker-compose up
+$ docker-compose up -d
 ```
 
 起動すると，以下の URL で Redash にアクセスできるようになります．
@@ -64,11 +65,11 @@ $ docker-compose up
 
 次に Redash から MySQL に接続できるように「データソース」を設定します．
 
-ログイン後の画面にある「1. Connect a Data Source」のリンクをクリックし，「New Data Source」ボタンをクリックします．
-
-次に「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
+ログイン後の画面にある「1. Connect a Data Source」のリンクをクリックします．
 
 ![](images/data_sources.png)
+
+次に「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
 
 以下の通りに設定したら「Save → Test Connection」とクリックし，接続確認をしましょう．Success と画面右下に表示されます．なお，今回はテストデータとして `world` データベースを使います．
 
@@ -85,7 +86,7 @@ $ docker-compose up
 
 ## 日付フォーマット設定
 
-画面右上にある Settings アイコンをクリックし，「Settings」タブをクリックします．
+画面右上にある Settings アイコン（？の右側）をクリックし，「Settings」タブをクリックします．
 
 日付フォーマットを以下の通りに変更します．
 
@@ -204,7 +205,7 @@ ORDER BY COUNT DESC;
     - Y Columns
         - `COUNT`
 
-しかし，棒グラフの場合，このままでは順序がバラバラです．「GENERAL」タブの隣にある「X AXIS」タブをクリックし，軸の設定をする必要があります．
+しかし，棒グラフの場合，このままでは順序がバラバラです．「GENERAL」タブの隣にある「X Axis」タブをクリックし，軸の設定をする必要があります．
 
 - Scale
     - `Category`
@@ -274,7 +275,7 @@ Redash ではクエリだけではなく，ダッシュボードに対しても�
 
 次はクエリにパラメータを付けてみましょう．
 
-Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．なお，クエリを入力した後にクエリの下にある2番目のアイコン「Format Query」をクリックすると，自動的にクエリをフォーマットすることができます．
+Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．なお，クエリを入力した後にクエリの下にある2番目のアイコン「Format Query」をクリックすると，自動的にクエリをフォーマットすることができます．試してみましょう．
 
 ```sql
 SELECT *
@@ -304,11 +305,12 @@ ORDER BY Population DESC;
 
 今回は便利な「Dropdown List」を試しましょう．
 
-パラメータの横にあるトグルをクリックし，「Type」を `Dropdown List` にします．さらに `Dropdown List Values (newline delimited)` に以下のリストを設定します．
+パラメータの横にあるトグルをクリックし，「Type」を `Dropdown List` にします．さらに「Values」 に以下のリストを設定します．
 
 ```
 JPN
 USA
+AUS
 ```
 
 すると，選択肢から選べるようになるため，入力ミスを軽減できるようになります．
@@ -343,7 +345,7 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 Redash では，よく使うクエリ（もしくはクエリの一部）をクエリスニペットとして登録する機能があります．
 
-画面右上にある Settings アイコンをクリックし，「Query Snippets」タブをクリックします．
+画面右上にある Settings アイコン（？の右側）をクリックし，「Query Snippets」タブをクリックします．
 
 次に「New Snippet」ボタンをクリックすると登録画面が表示されます．以下の設定をしたら「Save」ボタンを押しましょう．
 
@@ -383,7 +385,7 @@ SELECT Code,
        Population,
        CASE
            WHEN Population > 1000000000 THEN '<div class="bg-success p-30 text-center">AAA</div>'
-           WHEN Population > 140000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
+           WHEN Population > 213000000 THEN '<div class="bg-warning p-20 text-center">BBB</div>'
            ELSE '<div class="bg-danger p-10 text-center">CCC</div>'
        END AS Color
 FROM country
@@ -416,6 +418,25 @@ SELECT '<a href="https://www.bing.com/" target="_blank">Bing</a>';
 
 ![](images/query_urls.png)
 
+## クエリを選択実行しよう
+
+Redash には，クエリを選択実行する機能があります．
+
+分析クエリを書くときにサブクエリや JOIN を活用する場面も多いと思います．サブクエリなどの部分クエリを選択して実行できると便利です．
+
+以下の新規クエリを作成し，サブクエリを選択し，「Execute Selected」ボタンをクリックして実行してみましょう．
+
+```sql
+SELECT *
+FROM country
+WHERE Code =
+    (SELECT Code
+     FROM country
+     WHERE Name = 'Japan')
+```
+
+![](images/query_selected.png)
+
 ## クエリ結果をダウンロードしよう
 
 Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と Excel です．
@@ -435,7 +456,7 @@ Redash では，クエリ結果をダウンロードすることができます�
 
 チームで使っていると「メンバーが作ったクエリを少しカスタマイズしたい」と感じる場面があります．そのために Redash には「フォーク機能」があります．
 
-既に作ったクエリ「国の一覧」を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを **「Copy of (#1) 国の一覧」** から **「国の一覧（カスタマイズ）」** に変更しましょう．
+既に作ったクエリ **「国の一覧」** を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを **「Copy of (#1) 国の一覧」** から **「国の一覧（カスタマイズ）」** に変更しましょう．
 
 クエリを自由に変更できるため，以下のクエリを入力し，実行しましょう．表示するカラムを「国コード」と「名前」と「人口」にカスタマイズできました．なお，今回も「Format Query」を実行しておきましょう．
 
@@ -456,6 +477,7 @@ Redash の機能は可視化だけではありません．特定の値が閾値�
 - HipChat
 - Mattermost
 - Email
+- Google Hangouts Chat
 
 Slack に Webhook 経由でアラートを通知してみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
 
@@ -509,11 +531,9 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 次に，Redash 管理者として Redash ユーザーを追加／無効化する運用手順を試してみましょう．
 
-まず，画面右上のメニューから「Users」をクリックし，次に「New User」ボタンをクリックします．なお，登録画面に以下のエラーが出る場合がありますが，問題ありません．
+まず，画面右上のメニューから「Users」をクリックし，次に「New User」ボタンをクリックします．
 
->It looks like your mail server isn't configured. Make sure to configure it for the alert emails to work.
-
-以下の通りに，Redash ユーザーを2個登録します．なお，2個目を登録する際は，タブの「Users」をクリックする必要があります．登録が終わったら，もう1度タブの「Users」をクリックし，ユーザー一覧で確認をしましょう．
+以下の通りに，Redash ユーザーを2個登録します．登録が終わったら「Pending Invitations」をクリックし，ユーザーを確認しましょう．招待中の状態になっています．
 
 - New User
     - Name
@@ -529,6 +549,8 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 メンバーの退職など，Redash ユーザーを削除する場合はどうしたら良いのでしょう？
 
-Redash にはユーザーを削除する機能はありませんが，ユーザーを無効化する手順があります．ユーザー一覧で「RedashUser2」の「Disable」ボタンを押してみましょう．すると，画面から消え，隣の「Disabled Users」タブに移動したことが確認できます．無効化を解除する場合は「Enable」ボタンをクリックします．
+Redash にはユーザーを削除する機能はありませんが，ユーザーを無効化する手順があります．今回は招待中のユーザーを無効化します．
+
+「Pending Invitations」で「RedashUser2」をクリックし，「Disable User」ボタンを押してみましょう．すると「Disabled Users」に移動したことが確認できます．無効化を解除する場合は「Enable User」ボタンをクリックします．
 
 ![](images/disabled_users.png)
