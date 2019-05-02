@@ -65,11 +65,11 @@ $ docker-compose up -d
 
 次に Redash から MySQL に接続できるように「データソース」を設定します．
 
-ログイン後の画面にある「1. Connect a Data Source」のリンクをクリックし，「New Data Source」ボタンをクリックします．
-
-次に「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
+ログイン後の画面にある「1. Connect a Data Source」のリンクをクリックします．
 
 ![](images/data_sources.png)
+
+次に「MySQL」をクリックします．「MySQL (Amazon RDS)」ではなく「MySQL」です．
 
 以下の通りに設定したら「Save → Test Connection」とクリックし，接続確認をしましょう．Success と画面右下に表示されます．なお，今回はテストデータとして `world` データベースを使います．
 
@@ -86,7 +86,7 @@ $ docker-compose up -d
 
 ## 日付フォーマット設定
 
-画面右上にある Settings アイコンをクリックし，「Settings」タブをクリックします．
+画面右上にある Settings アイコン（？の右側）をクリックし，「Settings」タブをクリックします．
 
 日付フォーマットを以下の通りに変更します．
 
