@@ -468,6 +468,7 @@ Redash の機能は可視化だけではありません．特定の値が閾値�
 - HipChat
 - Mattermost
 - Email
+- Google Hangouts Chat
 
 Slack に Webhook 経由でアラートを通知してみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
 
