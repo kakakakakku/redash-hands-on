@@ -332,7 +332,7 @@ AUS
 ```sql
 SELECT *
 FROM city
-WHERE CountryCode IN ({{CountryCode}})
+WHERE CountryCode IN ('{{CountryCode}}')
 ORDER BY Population DESC;
 ```
 
