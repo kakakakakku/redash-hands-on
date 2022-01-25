@@ -1,7 +1,7 @@
 # redash-hands-on
 
 [![GitHub stars](https://img.shields.io/github/stars/kakakakakku/redash-hands-on.svg?style=for-the-badge)](https://github.com/kakakakakku/redash-hands-on/stargazers)
-[![Redash version](https://img.shields.io/badge/redash-v8.0.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
+[![Redash version](https://img.shields.io/badge/redash-v10.1.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
 
 ## 前提
 
@@ -18,10 +18,11 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - [kakakakakku/redash-hands-on at v5.0.1](https://github.com/kakakakakku/redash-hands-on/tree/v5.0.1)
 - [kakakakakku/redash-hands-on at v6.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v6.0.0)
 - [kakakakakku/redash-hands-on at v7.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v7.0.0)
+- [kakakakakku/redash-hands-on at v8.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v8.0.0)
 
 ## 環境構築
 
-Docker Compose で **Redash (v8.0.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
+Docker Compose で **Redash (v10.1.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
@@ -34,7 +35,7 @@ $ cd redash-hands-on
 
 初回はイメージをダウンロードするため，少し時間がかかる場合があります．
 
-```
+```sh
 $ docker-compose run --rm server create_db
 $ docker-compose up -d
 ```
@@ -91,7 +92,7 @@ Redash にログインできました．
 
 ## 日付フォーマット設定
 
-画面右上にある Settings アイコン（？の右側）をクリックし，「Settings」タブをクリックします．
+画面左下にある Settings アイコンをクリックし，「General」タブをクリックします．
 
 日付フォーマットを以下の通りに変更します．変更後に「Save」ボタンをクリックします．
 
@@ -103,7 +104,7 @@ Redash にログインできました．
 
 ## クエリを作ってみよう
 
-ナビバーから「Create → Query」とクリックし，以下のクエリを入力しましょう．
+ナビバーから「Create → New Query」とクリックし，以下のクエリを入力しましょう．
 
 ```sql
 SELECT * FROM country;
@@ -129,13 +130,13 @@ Redash ではクエリに対する「お気に入り登録」と「タグ登録�
 
 ## グラフを作ってみよう
 
-先ほどと同様にナビバーから「Create → Query」とクリックし，新規クエリを作成し，以下のクエリを入力しましょう．実行すると，登録されている国の件数が「239」であることが取得できます．この件数をグラフにしてみましょう．
+先ほどと同様にナビバーから「Create → New Query」とクリックし，新規クエリを作成し，以下のクエリを入力しましょう．実行すると，登録されている国の件数が「239」であることが取得できます．この件数をグラフにしてみましょう．
 
 ```sql
 SELECT COUNT(*) AS COUNT FROM country;
 ```
 
-「Table」 タブの横に表示されている「+ New Visualization」ボタンをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されます．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
+「Table」 タブの横に表示されている「+ Add Visualization」ボタンをクリックし，以下の通りに設定をします．「Save」ボタンをクリックすると，件数のグラフが表示されます．最新値など，特定の値をグラフにする場合は `Counter` が便利です．
 
 - Visualization Type
     - `Counter`
@@ -152,7 +153,7 @@ SELECT COUNT(*) AS COUNT FROM country;
 SELECT COUNT(*) AS COUNT, 500 AS kpi FROM country;
 ```
 
-もう一度「+ New Visualization」ボタンをクリックし，以下の通りに設定をします．先ほどとの違いは「Target Value Column Name」の設定を追加した点です．このようにクエリを活用することで，目標値と実績値を一緒に可視化することができます．
+もう一度「+ Add Visualization」ボタンをクリックし，以下の通りに設定をします．先ほどとの違いは「Target Value Column Name」の設定を追加した点です．このようにクエリを活用することで，目標値と実績値を一緒に可視化することができます．
 
 `Counter` に「目標値」を設定した場合，値が実績を下回る場合は赤く表示され，上回る場合は緑で表示されます．
 
@@ -182,7 +183,7 @@ GROUP BY CountryCode
 ORDER BY COUNT DESC;
 ```
 
-先ほどと同様に「+ New Visualization」ボタンをクリックし，以下の通りに設定をすると，円グラフを作ることができます．
+先ほどと同様に「+ Add Visualization」ボタンをクリックし，以下の通りに設定をすると，円グラフを作ることができます．
 
 - Visualization Type
     - `Chart`
@@ -229,13 +230,7 @@ ORDER BY COUNT DESC;
 
 次にダッシュボードを作ってみましょう．
 
-ナビバーから「Create → Dashboard」とクリックし，ダッシュボードタイトルに **「ハンズオン:国ダッシュボード」** と入力しましょう．
-
-ポイントは `グループ名:ダッシュボード名` という命名規則にすることです．
-
-Redash には Grouping Dashboards という機能があり，ダッシュボードタイトルにコロンを含めることで，同じグループのダッシュボードをまとめて管理することができます．詳しくは公式ドキュメントを読んでみましょう．
-
-- [Creating and Editing Dashboards | Redash](https://redash.io/help/user-guide/dashboards/dashboard-editing)
+ナビバーから「Create → New Dashboard」とクリックし，ダッシュボードタイトルに **「国ダッシュボード」** と入力しましょう．
 
 次にダッシュボードにグラフを配置していきます．
 
@@ -284,7 +279,7 @@ Redash ではクエリだけではなく，ダッシュボードに対しても�
 
 Redash では，クエリに `{{}}` を含めると，その部分がパラメータになります．以下の新規クエリを作りましょう．
 
-なお，クエリを入力した後にクエリの下にある2番目のアイコン「Format Query」をクリックすると，自動的にクエリをフォーマットすることができます．`FROM` が2行目にフォーマットされます．試してみましょう．
+なお，クエリを入力した後にクエリの下にある2番目のアイコン「Format Query」をクリックすると，自動的にクエリをフォーマットすることができます．`FROM` が3行目にフォーマットされます．試してみましょう．
 
 ```sql
 SELECT * FROM city
@@ -382,9 +377,9 @@ SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Populati
 
 Redash では，よく使うクエリ（もしくはクエリの一部）をクエリスニペットとして登録する機能があります．
 
-画面右上にある Settings アイコン（？の右側）をクリックし，「Query Snippets」タブをクリックします．
+画面左下にある Settings アイコンをクリックし，「Query Snippets」タブをクリックします．
 
-次に「New Query Snippet」ボタンをクリックすると登録画面が表示されます．以下の設定をしたら「Save」ボタンを押しましょう．
+次に「New Query Snippet」ボタンをクリックすると登録画面が表示されます．以下の設定をしたら「Create」ボタンを押しましょう．
 
 - Trigger
     - `_country_code`
@@ -478,13 +473,14 @@ WHERE Code =
 
 ## クエリ結果をダウンロードしよう
 
-Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と Excel です．
+Redash では，クエリ結果をダウンロードすることができます．現状サポートされているデータ形式は CSV と TSV と Excel です．
 
 ナビバーの「Queries」をクリックし，既に作ったクエリ **「国の一覧」** を開きましょう．
 
-画面下にある「縦点」ボタン（Edit Visualization ボタンの右にある）を押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
+画面下にある「縦点」ボタン（Edit Visualization ボタンの左にある）を押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
 
 - Download as CSV File
+- Download as TSV File
 - Download as Excel File
 
 ![](images/query_download.png)
@@ -509,19 +505,19 @@ SELECT Code, Name, Population FROM country;
 
 Redash の機能は可視化だけではありません．特定の値が閾値を超えた場合にアラートを通知する機能があります．通知先は以下から選ぶことができます．
 
-- ChatWork
-- PagerDuty
+- Email
 - Slack
 - Webhook
 - Mattermost
-- Email
+- ChatWork
+- PagerDuty
 - Google Hangouts Chat
 
 Slack に Webhook 経由でアラートを通知してみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
 
 まず，Slack で Incoming WebHooks を作成します．そのままでも使えますが，「Customize Name」に `Redash Alerts`，「Customize Icon」に Redash のロゴ画像などを設定しておくと便利です．「Webhook URL」の値は次に使います．
 
-画面右上にある Settings アイコンをクリックし，「Alert Destinations」タブにある「New Alert Destination」ボタンをクリックしましょう．次に「Slack」をクリックし，登録画面で以下を設定します．
+画面左下にある Settings アイコンをクリックし，「Alert Destinations」タブにある「New Alert Destination」ボタンをクリックしましょう．次に「Slack」をクリックし，登録画面で以下を設定します．
 
 - Name
     - `Slack`
@@ -532,36 +528,30 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 アラートを設定する前に，もう少し準備をしておく必要があります．
 
-既に作成をした「国の件数」クエリを開き，画面左下にある「Refresh Schedule」を有効にする必要があります．「Never」をクリックしてから，今回は `1 minute` にしましょう．
+既に作成をした「国の件数」クエリを開き「Edit Source」をクリックします。さらに画面左下にある「Refresh Schedule」を有効にする必要があります．「Never」をクリックしてから，今回は `1 minute` にしましょう．
 
 今回の例では，国の件数に変化はありませんが，定期的にクエリの実行をする機能です．アラートの設定をするクエリには「Refresh Schedule」の設定が必要です．
 
 ![](images/refresh_schedule.png)
 
-最後はアラートの設定です．ナビバーから「Create → Alert」をクリックし，「New Alert」の画面を開きます．以下のエラーが出る場合がありますが，問題ありません．
+最後はアラートの設定です．ナビバーから「Create → New Alert」をクリックし，「New Alert」の画面を開きます．
 
->It looks like your mail server isn't configured. Make sure to configure it for the alert emails to work.
-
-登録画面で以下を設定します．「Rearm seconds」は，異常値が続く場合にアラートを再通知する間隔（秒数）です．
+登録画面で以下を設定します．
 
 - Query
     - `国の件数`
-- Name
+- Trigger when
+    - `COUNT > 200`
+- When triggered, send notification
+    - `Each time alert is evaluated`
+- 名前（画面1番上）
     - `国の件数が200件を超えた場合`
-- Value column
-    - `COUNT`
-- Op
-    - `greater than`
-- Reference
-    - `200`
-- Rearm seconds
-    - `60`
 
-「Save」をクリックすると，右側に「Notifications」のメニューが表示されるため，「Slack」を「Add」し，もう一度「Save」をクリックします．
+「Create Alert」をクリックすると，右側に「Destinations」のメニューが表示されるため，「Slack」を「Add」します．
 
 ![](images/alerts.png)
 
-すると，Slack にアラートが通知されます．確認ができたら「Rearm seconds」をブランクにして「Save」をクリックしておきましょう．
+すると，Slack にアラートが通知されます．確認ができたら「Destinations」の「Slack」を消しておきましょう．
 
 ![](images/slack_alerts.png)
 
@@ -569,16 +559,16 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 次に，Redash 管理者として Redash ユーザーを追加／無効化する運用手順を試してみましょう．
 
-まず，画面右上のユーザーメニュー（admin）から「Users」をクリックし，次に「New User」ボタンをクリックします．
+画面左下にある Settings アイコンをクリックし，「Users」タブをクリックします．次に「New User」ボタンをクリックします．
 
 以下の通りに，Redash ユーザーを2個登録します．「Email not sent!」というメッセージは問題ありません．登録が終わったら「Pending Invitations」をクリックし，ユーザーを確認しましょう．招待中の状態になっています．
 
-- New User 1
+- Create a New User（1回目）
     - Name
         - `RedashUser1`
     - Email
         - `redashuser1@example.com`
-- New User 2
+- Create a New User（2回目）
     - Name
         - `RedashUser2`
     - Email
@@ -594,6 +584,10 @@ Redash にはユーザーを削除する機能はありませんが，ユーザ�
 
 ![](images/disabled_users.png)
 
-以上でハンズオンは終わりです！お疲れさまでした！
+以上でハンズオンは終わりです！Redash を停止しておきましょう！お疲れさまでした！
+
+```sh
+$ docker-compose down
+```
 
 Happy querying :)
