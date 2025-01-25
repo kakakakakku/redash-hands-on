@@ -1,14 +1,13 @@
 # redash-hands-on
 
 [![GitHub stars](https://img.shields.io/github/stars/kakakakakku/redash-hands-on.svg?style=for-the-badge)](https://github.com/kakakakakku/redash-hands-on/stargazers)
-[![Redash version](https://img.shields.io/badge/redash-v10.1.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
+[![Redash version](https://img.shields.io/badge/redash-v25.1.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
 
 ## 前提
 
 Redash ハンズオン資料は以下の環境を前提に動作確認をしています．
 
-- Docker For Mac
-- Docker For Windows
+- Docker Desktop for Mac
 
 なお，Redash のバージョンごとにハンズオン資料を用意しています．最新バージョン以外を使う場合は，以下のタグから参照できます．
 
@@ -19,30 +18,31 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - [kakakakakku/redash-hands-on at v6.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v6.0.0)
 - [kakakakakku/redash-hands-on at v7.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v7.0.0)
 - [kakakakakku/redash-hands-on at v8.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v8.0.0)
+- [kakakakakku/redash-hands-on at v10.1.0](https://github.com/kakakakakku/redash-hands-on/tree/v10.1.0)
 
 ## 環境構築
 
-Docker Compose で **Redash (v10.1.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
+Docker Compose で **Redash (v25.1.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
 $ cd redash-hands-on
 ```
 
-公式の getredash/redash リポジトリに公開されている設定をベースに，テストデータを事前に投入した MySQL 5.7 コンテナを含めた `docker-compose.yml` を準備しました．
+公式の getredash/redash リポジトリに公開されている設定をベースに，テストデータを事前に投入した MySQL 8.4 コンテナを含めた `docker-compose.yml` を準備しました．
 
 以下のコマンドを実行し，Docker Compose で Redash を起動しましょう．
 
 初回はイメージをダウンロードするため，少し時間がかかる場合があります．
 
 ```sh
-$ docker-compose run --rm server create_db
-$ docker-compose up -d
+$ docker compose run --rm server create_db
+$ docker compose up -d
 ```
 
 起動すると，以下の URL で Redash にアクセスできるようになります．
 
-- http://localhost
+- http://localhost:5001
 
 最初に Admin User と Organization Name を登録しましょう．以下にサンプルを載せておきます．入力したら「Setup」をクリックします．
 
@@ -65,7 +65,7 @@ Redash にログインできました．
 
 なお，Redash 環境の構築方法は Docker Compose 以外にもあります．興味のある方は，公式ドキュメントを読んでみましょう．
 
-- [Setting up a Redash Instance | Redash](https://redash.io/help/open-source/setup)
+- [Setting up a Redash Instance | Redash](https://redash.io/help/open-source/setup/)
 
 ## データソース設定
 
@@ -362,7 +362,9 @@ ORDER BY Population DESC;
 次に「マルチフィルタ機能」を試しましょう．クエリを以下のように変更すると，今度は複数の「CountryCode」でフィルタできるようになります．なお，今回も「Format Query」を実行しておきましょう．
 
 ```sql
-SELECT *, CountryCode AS 'CountryCode::multi-filter' FROM city ORDER BY Population DESC;
+SELECT *, CountryCode AS 'CountryCode::multi-filter'
+FROM city
+ORDER BY Population DESC;
 ```
 
 フィルタ機能は非常に便利です．詳しくは公式ドキュメントを読んでみましょう．
@@ -477,7 +479,10 @@ Redash では，クエリ結果をダウンロードすることができます�
 
 ナビバーの「Queries」をクリックし，既に作ったクエリ **「国の一覧」** を開きましょう．
 
-画面下にある「縦点」ボタン（Edit Visualization ボタンの左にある）を押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
+> [!TIP]
+> "Query has no result" と表示されている場合は「Refresh Now」ボタンをクリックします．
+
+画面下にある「縦三点リーダー」ボタン（Edit Visualization ボタンの2つ左にある）を押すと，以下のメニューが表示されます．クエリ結果をダウンロードしてみましょう．
 
 - Download as CSV File
 - Download as TSV File
@@ -491,7 +496,7 @@ Redash では，クエリ結果をダウンロードすることができます�
 
 チームで使っていると **「メンバーが作ったクエリを少しカスタマイズしたい」** と感じる場面があります．そのために Redash には「フォーク機能」があります．
 
-既に作ったクエリ **「国の一覧」** を開き，画面右上にあるプルダウンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを **「Copy of (#1) 国の一覧」** から **「国の一覧（カスタマイズ）」** に変更しましょう．
+既に作ったクエリ **「国の一覧」** を開き，画面右上にある「縦三点リーダー」ボタンから「Fork」ボタンをクリックしましょう．すると，自動的に新規クエリが作成されます．クエリタイトルを **「Copy of (#1) 国の一覧」** から **「国の一覧（カスタマイズ）」** に変更しましょう．
 
 クエリを自由に変更できるため，以下のクエリを入力し，実行しましょう．表示するカラムを「国コード」と「名前」と「人口」にカスタマイズできました．なお，今回も「Format Query」を実行しておきましょう．
 
@@ -508,14 +513,22 @@ Redash の機能は可視化だけではありません．特定の値が閾値�
 - Email
 - Slack
 - Webhook
+- Discord
 - Mattermost
 - ChatWork
 - PagerDuty
 - Google Hangouts Chat
+- Microsoft Teams Webhook
+- Asana
+- Webex
+- Datadog
 
 Slack に Webhook 経由でアラートを通知してみましょう．今回は，自由に使える Slack アカウントがある前提で進めます．
 
-まず，Slack で Incoming WebHooks を作成します．そのままでも使えますが，「Customize Name」に `Redash Alerts`，「Customize Icon」に Redash のロゴ画像などを設定しておくと便利です．「Webhook URL」の値は次に使います．
+まず，Slack で Incoming WebHooks を作成します．そのままでも使えますが，Slack App の Basic Information で「App name」に `Redash Alerts`，「App icon」に Redash のロゴ画像などを設定しておくと便利です．生成された「Webhook URL」の値は次に使います．
+
+> [!TIP]
+> Incoming WebHooks の設定方法は [Sending messages using incoming webhooks | Slack](https://api.slack.com/messaging/webhooks) に載っています。
 
 画面左下にある Settings アイコンをクリックし，「Alert Destinations」タブにある「New Alert Destination」ボタンをクリックしましょう．次に「Slack」をクリックし，登録画面で以下を設定します．
 
@@ -528,7 +541,12 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 アラートを設定する前に，もう少し準備をしておく必要があります．
 
-既に作成をした「国の件数」クエリを開き「Edit Source」をクリックします。さらに画面左下にある「Refresh Schedule」を有効にする必要があります．「Never」をクリックしてから，今回は `1 minute` にしましょう．
+既に作成をした「国の件数」クエリを開き「Edit Source」をクリックします。
+
+> [!TIP]
+> "Query has no result" と表示されている場合は「Refresh Now」ボタンをクリックします．
+
+さらに画面左下にある「Refresh Schedule」を有効にする必要があります．「Never」をクリックしてから，今回は `1 minute` にしましょう．
 
 今回の例では，国の件数に変化はありませんが，定期的にクエリの実行をする機能です．アラートの設定をするクエリには「Refresh Schedule」の設定が必要です．
 
@@ -541,9 +559,11 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 - Query
     - `国の件数`
 - Trigger when
-    - `COUNT > 200`
+    - `[first] COUNT > 200`
 - When triggered, send notification
     - `Each time alert is evaluated`
+- Template
+    - `Use default template`
 - 名前（画面1番上）
     - `国の件数が200件を超えた場合`
 
@@ -561,7 +581,7 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 画面左下にある Settings アイコンをクリックし，「Users」タブをクリックします．次に「New User」ボタンをクリックします．
 
-以下の通りに，Redash ユーザーを2個登録します．「Email not sent!」というメッセージは問題ありません．登録が終わったら「Pending Invitations」をクリックし，ユーザーを確認しましょう．招待中の状態になっています．
+以下の通りに，Redash ユーザーを2人登録します．登録が終わったら「Pending Invitations」をクリックし，ユーザーを確認しましょう．招待中の状態になっています．
 
 - Create a New User（1回目）
     - Name
@@ -587,7 +607,7 @@ Redash にはユーザーを削除する機能はありませんが，ユーザ�
 以上でハンズオンは終わりです！Redash を停止しておきましょう！お疲れさまでした！
 
 ```sh
-$ docker-compose down
+$ docker compose down
 ```
 
 Happy querying :)
