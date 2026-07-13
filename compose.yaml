@@ -62,4 +62,3 @@ services:
     image: kakakakakku/mysql-world-database:8.4
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      TZ: Japan
