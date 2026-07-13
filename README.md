@@ -616,7 +616,3 @@ $ docker compose down
 ```
 
 Happy querying :)
-
-## Stargazers
-
-[![Stargazers over time](https://starchart.cc/kakakakakku/redash-hands-on.svg?variant=adaptive)](https://starchart.cc/kakakakakku/redash-hands-on)
