@@ -1,5 +1,5 @@
 x-redash-service: &redash-service
-  image: redash/redash:25.1.0
+  image: redash/redash:26.3.0
   env_file:
     - redash.env
 x-redash-environment: &redash-environment
@@ -45,7 +45,7 @@ services:
     image: redis:7-alpine
     restart: unless-stopped
   postgres:
-    image: pgautoupgrade/pgautoupgrade:latest
+    image: postgres:18-alpine
     ports:
       - "15432:5432"
     command: "postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF"

@@ -1,7 +1,7 @@
 # redash-hands-on
 
 [![GitHub stars](https://img.shields.io/github/stars/kakakakakku/redash-hands-on.svg?style=for-the-badge)](https://github.com/kakakakakku/redash-hands-on/stargazers)
-[![Redash version](https://img.shields.io/badge/redash-v25.1.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
+[![Redash version](https://img.shields.io/badge/redash-v26.3.0-ff7964.svg?style=for-the-badge)](https://github.com/getredash/redash)
 
 ## 前提
 
@@ -19,17 +19,18 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - [kakakakakku/redash-hands-on at v7.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v7.0.0)
 - [kakakakakku/redash-hands-on at v8.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v8.0.0)
 - [kakakakakku/redash-hands-on at v10.1.0](https://github.com/kakakakakku/redash-hands-on/tree/v10.1.0)
+- [kakakakakku/redash-hands-on at v25.1.0](https://github.com/kakakakakku/redash-hands-on/tree/v25.1.0)
 
 ## 環境構築
 
-Docker Compose で **Redash (v25.1.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
+Docker Compose で **Redash (v26.3.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
 $ cd redash-hands-on
 ```
 
-公式の getredash/redash リポジトリに公開されている設定をベースに，テストデータを事前に投入した MySQL 8.4 コンテナを含めた `docker-compose.yml` を準備しました．
+公式の getredash/redash リポジトリに公開されている設定をベースに，テストデータを事前に投入した MySQL 8.4 コンテナを含めた `compose.yaml` を準備しました．
 
 以下のコマンドを実行し，Docker Compose で Redash を起動しましょう．
 
@@ -86,7 +87,7 @@ Redash にログインできました．
 | Port | 3306 |
 | User | root |
 | Password | - |
-| Database Name | world |
+| Database name | world |
 
 ![](images/data_source.png)
 
@@ -428,7 +429,11 @@ ORDER BY Population DESC;
 
 「Population」の値によって「緑黄赤」と色を変えています．さらに縦サイズも変えています．このように活用すると，よりクエリ結果を便利に使うことができます．
 
-クエリタイトルを **「国の一覧（色付き）」** にして保存しておきましょう．他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
+クエリタイトルを **「国の一覧（色付き）」** にして保存しておきましょう．
+
+なお，セキュリティ強化のため，クエリ結果の HTML はデフォルトでは描画されなくなりました．画面下にある「Edit Visualization」ボタンをクリックし，「Columns」タブで「Color」カラムを開き，「Allow HTML content」を有効化して「Save」ボタンをクリックしましょう．すると，HTML が描画されます．
+
+他にも利用可能なマークアップがあり，公式ドキュメントに載っています．
 
 - [Conditional Formatting & General Text Formatting - Tips, Tricks & Query Examples - Redash Discourse](https://discuss.redash.io/t/conditional-formatting-general-text-formatting/1706)
 
@@ -440,7 +445,7 @@ ORDER BY Population DESC;
 
 ダッシュボードにフリーテキストを入力する方法もありますが，Redash では，クエリ結果に HTML を埋め込むことができるため，簡単にリンクを作成することができます．
 
-以下の新規クエリを作成し，クエリタイトルを **「リンク集」** にして保存しておきましょう．
+以下の新規クエリを作成し，クエリタイトルを **「リンク集」** にして保存しておきましょう．今回も「Edit Visualization」ボタンをクリックし，「Columns」タブで「name」カラムの「Allow HTML content」を有効化して「Save」ボタンをクリックしましょう．
 
 ```sql
 SELECT '<a href="https://www.google.co.jp/" target="_blank">Google</a>' AS name
@@ -600,7 +605,7 @@ Slack に Webhook 経由でアラートを通知してみましょう．今回�
 
 Redash にはユーザーを削除する機能はありませんが，ユーザーを無効化する手順があります．今回は招待中のユーザーを無効化します．
 
-「Pending Invitations」で「RedashUser2」をクリックし，「Disable User」ボタンを押してみましょう．ユーザーを無効化できました．無効化を解除する場合は「Enable User」ボタンをクリックします．
+「Pending Invitations」で「RedashUser2」をクリックし，「Disable User」ボタンを押してみましょう．ユーザーを無効化できました．「Disabled Users」をクリックすると，無効化されたユーザーを確認できます．
 
 ![](images/disabled_users.png)
 
@@ -611,7 +616,3 @@ $ docker compose down
 ```
 
 Happy querying :)
-
-## Stargazers
-
-[![Stargazers over time](https://starchart.cc/kakakakakku/redash-hands-on.svg?variant=adaptive)](https://starchart.cc/kakakakakku/redash-hands-on)
