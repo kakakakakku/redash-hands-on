@@ -8,7 +8,7 @@ This Redash hands-on tutorial has been tested in the following environment.
 
 ## Setup
 
-Let's set up a **Redash (v26.3.0)** environment with Docker Compose. Clone the `kakakakakku/redash-hands-on` repository into any directory.
+Let's set up a **Redash (v26.9.0)** environment with Docker Compose. Clone the `kakakakakku/redash-hands-on` repository into any directory.
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git

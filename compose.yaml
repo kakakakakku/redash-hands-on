@@ -1,5 +1,5 @@
 x-redash-service: &redash-service
-  image: redash/redash:26.3.0
+  image: redash/redash:26.9.0
   env_file:
     - redash.env
 x-redash-environment: &redash-environment

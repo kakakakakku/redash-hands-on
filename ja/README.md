@@ -17,10 +17,11 @@ Redash ハンズオン資料は以下の環境を前提に動作確認をして�
 - [kakakakakku/redash-hands-on at v8.0.0](https://github.com/kakakakakku/redash-hands-on/tree/v8.0.0)
 - [kakakakakku/redash-hands-on at v10.1.0](https://github.com/kakakakakku/redash-hands-on/tree/v10.1.0)
 - [kakakakakku/redash-hands-on at v25.1.0](https://github.com/kakakakakku/redash-hands-on/tree/v25.1.0)
+- [kakakakakku/redash-hands-on at v26.3.0](https://github.com/kakakakakku/redash-hands-on/tree/v26.3.0)
 
 ## 環境構築
 
-Docker Compose で **Redash (v26.3.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
+Docker Compose で **Redash (v26.9.0)** 環境を構築します．任意のディレクトリに `kakakakakku/redash-hands-on` リポジトリをクローンしましょう．
 
 ```sh
 $ git clone https://github.com/kakakakakku/redash-hands-on.git
